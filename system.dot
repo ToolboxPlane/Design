@@ -1,0 +1,8 @@
+digraph Beziehungen {
+   nodesep=0.7
+   Jutta -> Franz [label="liebt"]
+   Bernd -> Franz [label="hasst"]
+   Franz -> Bernd [label="hasst"]
+   Franz -> Jutta [label="liebt"]
+   Bernd -> Jutta [label="liebt"]
+}

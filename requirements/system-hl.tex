@@ -1,0 +1,151 @@
+\group{System High-Level}{Sys-HL}
+\req
+    {1}{Launch detection}
+    {
+        The system shall be able to detect launches via integrated sensors.
+    }
+    {
+        \parent{Prod-DD-1}
+    }
+    {}
+\req
+    {2}{Velocity estimation}
+    {
+        The system shall be able to estimate the current velocity.   
+    }
+    {
+        \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {3}{Velocity control}
+    {
+        The system shall be able to control the velocity depending on
+        the current flight situation.
+    }
+    {
+        \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {4}{Attitude estimation}
+    {
+        The system shall be able to estimate the current attitude.   
+    }
+    {
+        \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {5}{Attitude control}
+    {
+        The system shall be able to control the attitude depending on
+        the current flight situation.
+    }
+    {
+        \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {6}{Position estimation}
+    {
+        The system shall be able to estimate the current position.
+    }
+    {
+        \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {6}{Position control}
+    {
+        The system shall be able to fly to given positions.
+    }
+    {
+        \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {7}{Mission Definition}
+    {
+        A mission, consisting of a list of waypoints with altitude
+        and a target point shall be able to be defined in a format
+        readable by the plane.
+    }
+    {\parent{Prod-DD-3}, \parent{Prod-DD-4}}
+    {}
+\req
+    {8}{Energy Storage}
+    {
+        The airplane has sufficient energy to complete the required distance
+        of 100km.
+    }
+    {\parent{Prod-DD-5}}
+    {}
+\req
+    {9}{Failure Tolerance}
+    {
+        The airplane can complete the required distance of 100km without
+        failure of any mission-critical component. 
+    }
+    {\parent{Prod-DD-5}}
+    {}
+\req
+    {10}{Debug Channel}
+    {
+        The airplane can transmit data while loitering
+        at the launch site.
+    }
+    {\parent{Prod-DD-6}}
+    {}
+\req
+    {11}{Debug Display}
+    {
+        Debug information transmitted by the plane can be displayed
+        to the user.
+    }
+    {\parent{Prod-DD-6}}
+    {}
+\dd
+    {1}{Partitioning}
+    {
+        The system is partitioned into the following components:
+        \begin{itemize}
+            \item Mechanical:
+                \begin{itemize}
+                    \item Airframe (AF)
+                    \item Control Surfaces Actuators (CS) 
+                    \item Electric Powertrain (PW)
+                \end{itemize}
+            \item Electronical:
+                \begin{itemize}
+                    \item Flightcontroller (FC)
+                    \item Flightcomputer (FCP)
+                    \item Power Distribution Board (PDB)
+                    \item Navigation Board (NAV)
+                    \item RC-Receiver (RX)
+                    \item RC-Transmitter (TX)
+                \end{itemize}
+            \item Software:
+                \begin{itemize}
+                    \item Flightcontroller-Software (FCS)
+                    \item Flightcomputer-Software (FCPS)
+                    \item Power Distribution Board Software (PDBS)
+                    \item Navigation Board Software (NAVS)
+                \end{itemize}
+        \end{itemize}
+    }
+    {
+        This partitioning allows to implement the components
+        individually from each other and thus allows to limit the complexity
+        of the mission-critical components.
+    }
+\dd
+    {2}{Manual override}
+    {
+        The system shall be able to be controlled manually
+        while closer than 200m to the pilot.
+    }
+    {
+        This allows handling errors during launch without
+        risk of crashing.
+    }
