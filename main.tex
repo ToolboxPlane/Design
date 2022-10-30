@@ -1,0 +1,159 @@
+\documentclass{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ifthen}
+
+\input{requirement_macros.tex}
+
+\title{Toolbox Plane}
+\author{Paul Nykiel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+
+
+\section{Requirements}
+
+\group{Product}{Prod}
+\dd
+    {1}{Take-Off}
+    {
+        The airplane shall be launched by hand without an additional pilot. 
+    }
+    {
+        This enables the launch by a single person, e.g. by throwing
+        with automated acceleration and stabilization.
+    }
+
+\dd
+    {2}{Climbing}
+    {
+        The airplane shall climb to a predefined altitude after launch and
+        circle the launch site at this altitude. 
+    }
+    {
+        Climbing and loitering guarantee a controlled environment
+        for pre-mission checks.
+    }
+
+\dd
+    {3}{Mission}
+    {
+        The airplane shall be able to follow a predefined set of waypoints, consisting
+        of latitude, longitude and altitude. 
+    }
+    {
+        This enables the implementation of a wide range of use-cases.
+    }
+
+\dd
+    {4}{Landing}
+    {
+        The airplane shall be able to follow land at a predefined landing position.    
+    }
+    {
+        A safe landing guarantees the fast reuse of the craft and the collection
+        of all mission data.
+    }
+\dd
+    {5}{Range}
+    {
+        The airplane minimum range of the aircraft shall be 100km
+    }
+    {
+        This range allows for the execution of a wide range of missions.
+    }
+\dd
+    {6}{Error Handling}
+    {
+        The airplane shall provide all information required for finding
+        errors, both on the ground and when loitering.
+    }
+    {
+        This allows for the fast detection of errors.
+    }
+
+
+
+\group{System High-Level}{Sys-HL}
+\req
+    {1}{Launch detection}
+    {
+        The system shall be able to detect launches via integrated sensors.
+    }
+    {
+        \parent{Prod-DD-1}
+    }
+    {}
+\req
+    {2}{Velocity estimation}
+    {
+        The system shall be able to estimate the current velocity.   
+    }
+    {
+        \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {3}{Velocity control}
+    {
+        The system shall be able to control the velocity depending on
+        the current flight situation.
+    }
+    {
+        \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {4}{Attitude estimation}
+    {
+        The system shall be able to estimate the current attitude.   
+    }
+    {
+        \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {5}{Attitude control}
+    {
+        The system shall be able to control the attitude depending on
+        the current flight situation.
+    }
+    {
+        \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {6}{Position estimation}
+    {
+        The system shall be able to estimate the current position.
+    }
+    {
+        \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {6}{Position control}
+    {
+        The system shall be able to fly to given positions.
+    }
+    {
+        \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
+    }
+    {}
+\req
+    {7}{Mission Definition}
+    {
+        A mission, consisting of a list of waypoints with altitude
+        and a target point shall be 
+    }{}{}
+
+
+\end{document}

@@ -1,0 +1,57 @@
+% Command to generate a new subsection for a level of requirements.
+% Arguments:
+%   - Title: Name of the level (e.g. System-High-Level)
+%   - Group-ID: ID of the level (e.g. Sys-HL)
+\newcommand{\group}[2]{
+    \newpage
+    \subsection{#1}
+    \renewcommand{\domain}{#2}
+}
+
+% Set the domain to an initial value so that \group can redefine it.
+\newcommand{\domain}{NO DOMAIN SET}
+
+% Command to generate a new subsubsection for a requirement.
+% The name is of the form [group]_REQ_[num], where group
+% can be set via a call to \group.
+% Arguments:
+%   - ID: usually a number, should be unique for this group
+%   - Title: The short description of the requirement
+%   - Description: The full description of the requirement
+%   - Parent requirements: Links to the parent requirements
+%   - Partition: Partitioning of this requirement, ignored if empty
+\newcommand{\req}[5]{
+    \subsubsection*{Requirement \domain-REQ-\textbf{#1}: #2} \label{\domain-REQ-#1}
+    \paragraph{Description:}
+    #3
+
+    \paragraph{Parent Requirements:}
+    #4
+
+    \ifthenelse{\equal{#5}{}}{}{
+        \paragraph{Partition:}
+        #5
+    }
+}
+
+% Command to link to a parent requirement
+% Arguments:
+%   - ID: ID of the parent requirement.
+\newcommand{\parent}[1]{\hyperref[#1]{#1}}
+
+% Command to generate a new subsubsection for a design decision.
+% The name is of the form [group]_DD_[num], where group
+% can be set via a call to \group.
+% Arguments:
+%   - ID: usually a number, should be unique for this group
+%   - Title: The short description of the requirement
+%   - Description: The full description of the requirement
+%   - Reasoning: Reason for the choice of design decision.
+\newcommand{\dd}[4]{
+    \subsubsection*{Design Decision \domain-DD-\textbf{#1}: #2} \label{\domain-DD-#1}
+    \paragraph{Description:}
+    #3
+
+    \paragraph{Reasoning:}
+    #4
+}
