@@ -1,8 +1,72 @@
 digraph Beziehungen {
-   nodesep=0.7
-   Jutta -> Franz [label="liebt"]
-   Bernd -> Franz [label="hasst"]
-   Franz -> Bernd [label="hasst"]
-   Franz -> Jutta [label="liebt"]
-   Bernd -> Jutta [label="liebt"]
+   subgraph clusterFCP {
+      label="FCP"
+      FCPS
+   }
+
+   subgraph clusterFC {
+      label="FC"
+      FCS;
+   }
+
+   subgraph clusterNAV {
+      label="NAV"
+      NAVS;    
+   }
+
+   subgraph clusterPDB {
+      label="PDB"
+      PDBS
+   }
+
+   AF;
+   CS;
+   EP;
+   RX;
+   TX;
+
+   FCS -> FCPS [
+      label = "IMU"
+   ]
+
+   FCPS -> FCS [
+      label = "Orientation,\nMotor Setpoint"
+   ]
+
+   NAVS -> FCPS [
+      label = "Speed,\nPosition"
+   ]
+
+   FCPS -> NAVS [
+      label = "Debug Data"
+   ]
+
+   PDBS -> FCPS [
+      label = "U, I VCC and 5V"
+   ]
+
+   TX -> RX [
+      label = "Servo,\nMotor Setpoint"
+   ];
+
+   RX -> FCS [
+      label = "Servo,\nMotor Setpoint"
+   ];
+
+   FCS -> CS [
+      label = "Servo Setpoint"
+   ]
+
+   FCS -> EP [
+      label = "Motor Setpoint"
+   ]
+
+   CS -> AF [
+      label = "Elevon Deflection"
+   ]
+
+   EP -> AF [
+      label = "Thrust"
+   ]
+
 }

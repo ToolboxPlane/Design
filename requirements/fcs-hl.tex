@@ -1,0 +1,59 @@
+\req
+	{1}{IMU Measurements}
+	{
+
+        The FCS shall be able to read measurement data from the IMU.
+
+
+
+        TODO which data
+
+    }
+	{\parent{Sys-LL-REQ-2}}
+
+\req
+	{2}{IMU Data Transmission}
+	{
+
+        The FCS shall transmit every $\SI{100}{\milli\second}$ IMU data to the FCPS.
+
+    }
+	{\parent{Sys-LL-REQ-3}}
+
+\req
+	{3}{Motor Setpoint Receive}
+	{
+
+        The FCS shall be able to receive a motor setpoint
+
+        every $\SI{100}{\milli\second}$
+
+    }
+	{\parent{Sys-LL-REQ-13}}
+
+\req
+	{4}{Motor Setpoint Command}
+	{
+
+        The FCS shall transmit every motor setpoint
+
+        as a command to the EP at most $\SI{20}{\milli\second}$
+
+        after reception. 
+
+    }
+	{\parent{Sys-LL-REQ-14}}
+
+\req
+	{5}{Attitude Controller}
+	{
+
+        The FCS shall compute a control surface position signal 
+
+        which guarentees that the measured orientation follows
+
+        the orientation setpoint.
+
+    }
+	{\parent{Sys-LL-REQ-17}}
+

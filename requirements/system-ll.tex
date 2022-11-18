@@ -1,15 +1,197 @@
 \group{System Low-Level}{Sys-LL}
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{system.eps}
+    \caption{System Partitioning and Data Flow}
+\end{figure}
 \req
     {1}{IMU}
     {
         The FC shall be equipped with an IMU.
     }
-    {\parent{Sys-HL-REQ-1}}
+    {\parent{Sys-HL-REQ-1}, \parent{Sys-HL-REQ-4}}
     {FC}
 \req
     {2}{IMU Measurements}
     {
         The FCS shall be able to read measurement data from the IMU.
+
+        TODO which data
+    }
+    {\parent{Sys-HL-REQ-1}, \parent{Sys-HL-REQ-4}}
+    {FCS}
+\req
+    {3}{IMU Data Transmission}
+    {
+        The FCS shall transmit every $\SI{100}{\milli\second}$ IMU data to the FCPS.
+    }
+    {\parent{Sys-HL-REQ-1}, \parent{Sys-HL-REQ-4}}
+    {FCS}
+\req
+    {4}{IMU Data Reception}
+    {
+        The FCPS shall be able to receive IMU data every $\SI{100}{\milli\second}$.
+    }
+    {\parent{Sys-HL-REQ-1}, \parent{Sys-HL-REQ-4}}
+    {FCPS}
+\req
+    {5}{State Estimation}
+    {
+        The FCPS shall filter the IMU and pitot data to guarantee
+        \begin{itemize}
+            \item an acceleration standard deviation less than \SI{0.6}{\meter \per \second^2}
+            \item the orientation with TBD performance
+            \item the velocity with TBD performance
+            \item the position with TBD performance
+        \end{itemize}
+    }
+    {\parent{Sys-HL-REQ-1}, \parent{Sys-HL-REQ-2}, \parent{Sys-HL-REQ-4}, \parent{Sys-HL-REQ-6}}
+    {FCPS}
+\req
+    {6}{Launch Detection}
+    {
+        The FCPS shall use the estimated state to signal a detected
+        launch if the acceleration is larger than \SI{6}{\meter \per \second}.
     }
     {\parent{Sys-HL-REQ-1}}
+    {FCPS}
+\req
+    {7}{Pitot-Sensor}
+    {
+        The Nav shall be equipped with a Pitot Tube for Airspeed measurements.
+    }
+    {\parent{Sys-HL-Req-2}}
+    {NAV}
+\req
+    {8}{Velocity Measurements}
+    {
+        The velocity shall be measured by the Nav Software.
+    }
+    {\parent{Sys-HL-Req-2}}
+    {NAVS}
+\req
+    {9}{Velocity Transmission}
+    {
+        The measured velocity shall be transmitted to the
+        FCPS every $\SI{100}{\milli \second}$.
+    }
+    {\parent{Sys-HL-Req-2}}
+    {NAVS}
+\req
+    {10}{Velocity Reception}
+    {
+        The FCPS shall be able to receive the velocity data
+        every $\SI{100}{\milli\second}$
+    }
+    {\parent{Sys-HL-Req-2}}
+    {FCPS}
+\req
+    {11}{Velocity Controller}
+    {
+        The FCPS shall be able to find a motor command such
+        that the plane achieves the error between the estimated
+        and the desired velocity goes to zero.
+        with TODO performance.
+    }
+    {\parent{Sys-HL-REQ-3}}
+    {FCPS}
+\req
+    {12}{Motor Setpoint Transmission}
+    {
+        The FCPS shall transmit the calculated motor setpoint
+        every $\SI{100}{\milli\second}$
+    }
+    {\parent{Sys-HL-REQ-3}}
+    {FCPS}
+\req
+    {13}{Motor Setpoint Receive}
+    {
+        The FCS shall be able to receive a motor setpoint
+        every $\SI{100}{\milli\second}$
+    }
+    {\parent{Sys-HL-REQ-3}}
     {FCS}
+\req
+    {14}{Motor Setpoint Command}
+    {
+        The FCS shall transmit every motor setpoint
+        as a command to the EP at most $\SI{20}{\milli\second}$
+        after reception. 
+    }
+    {\parent{Sys-HL-REQ-3}}
+    {FCS}
+\req
+    {15}{Motor Command Execution}
+    {
+        The EP shall react on every motor command in at most
+        $\SI{20}{\milli\second}$.
+    }
+    {\parent{Sys-HL-REQ-3}}
+    {EP}
+\req
+    {16}{Motor Characterization}
+    {
+        The EP shall react to motor commands in a deterministic
+        manner, only influenced by the command, the load of the
+        motor and the battery voltage.
+        
+        The influence of all other factors should be less
+        than $10\%$ under normal operating conditions.
+
+        TODO what are those?
+    }
+    {\parent{Sys-HL-REQ-3}}
+    {EP}
+\req
+    {17}{Attitude Controller}
+    {
+        The FCS shall compute a control surface position signal 
+        which guarentees that the measured orientation follows
+        the orientation setpoint.
+    }
+    {\parent{Sys-HL-REQ-5}}
+    {FCS}
+\req
+    {18}{Servo Command Transmission}
+    {
+        The FCS shall transmit the computed servo setpoint every
+        $\SI{20}{\milli\second}$ to the CS.
+    }
+    {\parent{Sys-HL-REQ-5}}
+    {CS}
+\req
+    {19}{Servo Performance}
+    {
+        The CS shall set the position of the control surfaces
+        in accordance with the received command.
+    }
+    {\parent{Sys-HL-REQ-5}}
+    {CS}
+\req
+    {20}{GPS Sensor}
+    {
+        The NAV shall be equipped with a GPS sensor.
+    }
+    {\parent{Sys-HL-REQ-6}}
+    {NAV}
+\req
+    {21}{GPS Measurement}
+    {
+        The NAVS query the GPS sensor for new data every $\SI{100}{\milli\second}$.
+    }
+    {\parent{Sys-HL-REQ-6}}
+    {NAVS}
+\req
+    {22}{GPS Transmission}
+    {
+        The NAVS shall transmit the GPS data every $\SI{100}{\milli\second}$
+        to the FCPS.
+    }
+    {\parent{Sys-HL-REQ-6}}
+    {NAVS}
+\req
+    {23}{GPS Data reception}
+    {
+        The FCPS shall be able to receive GPS data every $\SI{100}{\milli\second}$
+    }
+    {\parent{Sys-HL-REQ-6}}
+    {FCPS}

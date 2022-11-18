@@ -2,7 +2,8 @@
 \req
     {1}{Launch detection}
     {
-        The system shall be able to detect launches via integrated sensors.
+        The system shall be able to detect launches if the
+        acceleration is larger than \SI{6}{\meter \per \second^2}.
     }
     {
         \parent{Prod-DD-1}
@@ -12,6 +13,7 @@
     {2}{Velocity estimation}
     {
         The system shall be able to estimate the current velocity.   
+        TODO precision.
     }
     {
         \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
@@ -20,8 +22,8 @@
 \req
     {3}{Velocity control}
     {
-        The system shall be able to control the velocity depending on
-        the current flight situation.
+        The system shall be able to control the velocity
+        TODO performance.
     }
     {
         \parent{Prod-DD-1}, \parent{Prod-DD-2}, \parent{Prod-DD-3}, \parent{Prod-DD-4}
@@ -56,7 +58,7 @@
     }
     {}
 \req
-    {6}{Position control}
+    {7}{Position control}
     {
         The system shall be able to fly to given positions.
     }
@@ -65,7 +67,7 @@
     }
     {}
 \req
-    {7}{Mission Definition}
+    {8}{Mission Definition}
     {
         A mission, consisting of a list of waypoints with altitude
         and a target point shall be able to be defined in a format
@@ -74,7 +76,7 @@
     {\parent{Prod-DD-3}, \parent{Prod-DD-4}}
     {}
 \req
-    {8}{Energy Storage}
+    {9}{Energy Storage}
     {
         The airplane has sufficient energy to complete the required distance
         of 100km.
@@ -82,7 +84,7 @@
     {\parent{Prod-DD-5}}
     {}
 \req
-    {9}{Failure Tolerance}
+    {10}{Failure Tolerance}
     {
         The airplane can complete the required distance of 100km without
         failure of any mission-critical component. 
@@ -90,7 +92,7 @@
     {\parent{Prod-DD-5}}
     {}
 \req
-    {10}{Debug Channel}
+    {11}{Debug Channel}
     {
         The airplane can transmit data while loitering
         at the launch site.
@@ -98,7 +100,7 @@
     {\parent{Prod-DD-6}}
     {}
 \req
-    {11}{Debug Display}
+    {12}{Debug Display}
     {
         Debug information transmitted by the plane can be displayed
         to the user.
@@ -149,3 +151,5 @@
         This allows handling errors during launch without
         risk of crashing.
     }
+
+% TODO architecture

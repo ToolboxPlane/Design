@@ -1,0 +1,66 @@
+\req
+	{1}{IMU Data Reception}
+	{
+
+        The FCPS shall be able to receive IMU data every $\SI{100}{\milli\second}$.
+
+    }
+	{\parent{Sys-LL-REQ-4}}
+
+\req
+	{2}{Launch Detection}
+	{
+
+        The FCPS shall use the estimated state to signal a detected
+
+        launch if the acceleration is larger than \SI{6}{\meter \per \second}.
+
+    }
+	{\parent{Sys-LL-REQ-6}}
+
+\req
+	{3}{Velocity Reception}
+	{
+
+        The FCPS shall be able to receive the velocity data
+
+        every $\SI{100}{\milli\second}$
+
+    }
+	{\parent{Sys-LL-REQ-10}}
+
+\req
+	{4}{Velocity Controller}
+	{
+
+        The FCPS shall be able to find a motor command such
+
+        that the plane achieves the error between the estimated
+
+        and the desired velocity goes to zero.
+
+        with TODO performance.
+
+    }
+	{\parent{Sys-LL-REQ-11}}
+
+\req
+	{5}{Motor Setpoint Transmission}
+	{
+
+        The FCPS shall transmit the calculated motor setpoint
+
+        every $\SI{100}{\milli\second}$
+
+    }
+	{\parent{Sys-LL-REQ-12}}
+
+\req
+	{6}{GPS Data reception}
+	{
+
+        The FCPS shall be able to receive GPS data every $\SI{100}{\milli\second}$
+
+    }
+	{\parent{Sys-LL-REQ-23}}
+

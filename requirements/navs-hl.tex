@@ -1,0 +1,40 @@
+\req
+	{1}{Velocity Measurements}
+	{
+
+        The velocity shall be measured by the Nav Software.
+
+    }
+	{\parent{Sys-LL-REQ-8}}
+
+\req
+	{2}{Velocity Transmission}
+	{
+
+        The measured velocity shall be transmitted to the
+
+        FCPS every $\SI{100}{\milli \second}$.
+
+    }
+	{\parent{Sys-LL-REQ-9}}
+
+\req
+	{3}{GPS Measurement}
+	{
+
+        The NAVS query the GPS sensor for new data every $\SI{100}{\milli\second}$.
+
+    }
+	{\parent{Sys-LL-REQ-21}}
+
+\req
+	{4}{GPS Transmission}
+	{
+
+        The NAVS shall transmit the GPS data every $\SI{100}{\milli\second}$
+
+        to the FCPS.
+
+    }
+	{\parent{Sys-LL-REQ-22}}
+

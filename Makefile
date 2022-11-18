@@ -1,10 +1,13 @@
 all: main.pdf
 
-main.pdf: main.tex 
+main.pdf: *.tex system.eps
 	latexmk -pdf -d main.tex
 
-%.pdf: %.dot
-	dot -T pdf -o $@ $<
+%.eps: %.svg
+	inkscape $< -E $@ --export-ignore-filters --export-ps-level=3
+
+%.svg: %.dot
+	dot -T svg -o $@ $<
 
 clean:
 	latexmk -C
