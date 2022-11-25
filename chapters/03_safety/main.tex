@@ -1,0 +1,65 @@
+\chapter{Safety Assesment}
+The following chapter lists the possible failure conditions
+of the different components, their severity and derived
+mitigations. The severity of an issue is classified in 
+five levels, depending on the influence of the performance
+of the complete system, Table \ref{tab:03:severityLevels}
+list these levels.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \toprule 
+        Level & Consequence of Failure \\
+        \midrule
+        A & Failure will lead to loss of aircraft \\
+        B & Failure will lead to damage of aircraft \\
+        C & Failure will result in non-fulfillment of mission \\ 
+        D & Failure will lead to inconvenience during mission fulfillment \\
+        E & No consequence on aircraft \\
+        \bottomrule
+    \end{tabular}
+    \caption{Safety Levels}
+    \label{tab:03:severityLevels}
+\end{table}
+
+Table \ref{tab:03:failure} lists all possible failures
+and the mitigations undertaken to reduce the risk posed
+by the failure. The extent and necessity of the mitigation
+is determined by the severity of the failure condition.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|l|l|p{5.6cm}}
+        \toprule
+        Partition & Failure & Severity & Mitigation \\
+        \midrule
+        \multirow{2}{*}{AF} 
+        & Loss of lift & A & Detection by state estimation on FCP \\
+        & Loss of structural integrity & A & ? \\
+        CS 
+        & Loss of control & A & Redundant control surfaces \\
+        PW 
+        & Loss of thrust & B & Detection by state estimation and emergency landing \\
+        \midrule
+        FC \\
+        PDB \\
+        NAV \\
+        RX \\
+        TX \\
+        \midrule
+        \multirow{6}{*}{FCS}
+        & No IMU data & A & Timeout mechanism for detection, dead reckoning by FCP on error \\
+        & Wrong IMU data & A & $\chi^2$ test on FCP for detection, dead reckoning by FCP on error \\
+        & Incorrect behavior of IMU & A & Deactivation of IMU and dead reckoning by FCP \\
+        & Loss of RC link & C & Failsave detection and emergency landing \\
+        & Loss of FCP connection & C & Loss detection and switch to RC commands \\
+        & Internal Errors & A & Full testing of all components on all levels \\
+        FCPS \\
+        PDBS \\
+        NAVS \\
+        \bottomrule
+    \end{tabular}
+    \caption{Failure Conditions and Mitigations}
+    \label{tab:03:failure}
+\end{table}

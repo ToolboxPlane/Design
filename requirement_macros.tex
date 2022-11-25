@@ -3,8 +3,7 @@
 %   - Title: Name of the level (e.g. System-High-Level)
 %   - Group-ID: ID of the level (e.g. Sys-HL)
 \newcommand{\group}[2]{
-    \newpage
-    \subsection{#1}
+    \section{#1}
     \renewcommand{\domain}{#2}
 }
 
@@ -21,17 +20,24 @@
 %   - Parent requirements: Links to the parent requirements
 %   - Partition: Partitioning of this requirement, ignored if empty
 \newcommand{\req}[5]{
-    \subsubsection*{Requirement \domain-REQ-\textbf{#1}: #2} \label{\domain-REQ-#1}
-    \paragraph{Description:}
-    #3
+    \fcolorbox{teal}{teal!30}{
+        \begin{minipage}{\textwidth}
+            \subsection*{Requirement \domain-REQ-\textbf{#1}: #2} \label{\domain-REQ-#1}
+            \paragraph{Description:}
+            #3
 
-    \paragraph{Parent Requirements:}
-    #4
+            \paragraph{Parent Requirements:}
+            #4
 
-    \ifthenelse{\equal{#5}{}}{}{
-        \paragraph{Partition:}
-        #5
+            \ifthenelse{\equal{#5}{}}{}{
+                \paragraph{Partition:}
+                #5
+            }
+        \end{minipage}
     }
+
+    \vspace{.5cm}
+    
 }
 
 % Command to link to a parent requirement
@@ -48,10 +54,17 @@
 %   - Description: The full description of the requirement
 %   - Reasoning: Reason for the choice of design decision.
 \newcommand{\dd}[4]{
-    \subsubsection*{Design Decision \domain-DD-\textbf{#1}: #2} \label{\domain-DD-#1}
-    \paragraph{Description:}
-    #3
+    \fcolorbox{teal}{teal!30}{
+        \begin{minipage}[l]{\textwidth}
+            \subsection*{Design Decision \domain-DD-\textbf{#1}: #2} \label{\domain-DD-#1}
+            \paragraph{Description:}
+            #3
 
-    \paragraph{Reasoning:}
-    #4
+            \paragraph{Reasoning:}
+            #4
+        \end{minipage}
+    }
+
+    \vspace{.5cm}
+    
 }

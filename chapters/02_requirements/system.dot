@@ -1,4 +1,4 @@
-digraph Beziehungen {
+digraph {
    subgraph clusterFCP {
       label="FCP"
       FCPS

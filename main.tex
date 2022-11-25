@@ -1,4 +1,4 @@
-\documentclass{scrartcl}
+\documentclass{scrreport}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -8,26 +8,26 @@
 \usepackage{ifthen}
 \usepackage{siunitx}
 \usepackage{graphicx}
-
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage[parfill]{parskip}
+\usepackage{tabularx} 
+\usepackage{booktabs}
+\usepackage{multirow}
 
 \input{requirement_macros.tex}
 
-\title{Toolbox Plane}
+\title{Toolbox Plane Design Document}
 \author{Paul Nykiel}
 \date{\today}
 
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Introduction}
-This is the requirements and design document for
-Toolbox Plane, an automated model plane. It is designed
-to fly autonomously for up to 100km.
 
-\section{Requirements}
-
-\input{requirements/product.tex}
-\input{requirements/system-hl.tex}
-\input{requirements/system-ll.tex}
+\input{chapters/01_intro/main.tex}
+\input{chapters/02_requirements/main.tex}
+\input{chapters/03_safety/main.tex}
+\input{chapters/04_interfaces/main.tex}
 
 \end{document}

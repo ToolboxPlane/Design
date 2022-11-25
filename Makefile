@@ -1,6 +1,6 @@
 all: main.pdf
 
-main.pdf: *.tex system.eps
+main.pdf: *.tex chapters/*/*.tex system.eps fcs.eps requirements.eps
 	latexmk -pdf -d main.tex
 
 %.eps: %.svg

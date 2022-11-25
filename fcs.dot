@@ -1,0 +1,62 @@
+digraph {
+    rankdir = "LR";
+
+    subgraph clusterHAL {
+        label="HAL"
+        UART0;
+        UART1;
+        UART2;
+    }
+
+    subgraph clusterDrivers {
+        label="Drivers"
+        BNO055UART [
+            label = "BNO055-UART";
+        ];
+        BNO055;
+
+        BNO055 ->BNO055UART;
+        BNO055UART -> BNO055;
+        SBUS;
+        PROTOBUF;
+    }
+
+    subgraph clusterComponents {
+        label="Components"
+        IMU;    
+        REMOTE;
+        FLIGHTCOMPUTER;
+    }
+
+    subgraph clusterApplication {
+        label="Application"
+        CONTROLLER;
+        MAIN;
+    }
+
+    UART1 -> BNO055UART;
+    BNO055UART -> UART1;
+
+    UART2 -> SBUS;
+
+    UART0 -> PROTOBUF;
+    PROTOBUF -> UART0;
+
+    BNO055 -> IMU;
+    IMU -> BNO055;
+
+    SBUS -> REMOTE;
+    PROTOBUF -> FLIGHTCOMPUTER;
+    FLIGHTCOMPUTER -> PROTOBUF;
+
+    IMU -> MAIN;
+    MAIN -> IMU;
+
+    REMOTE -> MAIN;
+
+    FLIGHTCOMPUTER -> MAIN;
+    MAIN -> FLIGHTCOMPUTER;
+
+    MAIN -> CONTROLLER;
+    CONTROLLER -> MAIN;
+}
