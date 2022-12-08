@@ -1,4 +1,5 @@
 {
+    "$schema": "../../tools/schema.json",
     "title": "Product",
     "id": "Prod",
     "requirements": [
@@ -6,49 +7,37 @@
             "type": "requirement",
             "id": 1,
             "title": "Take-Off",
-            "descr": "The airplane shall be launched by hand without an additional pilot.",
-            "parent": [],
-            "partition": ""
+            "descr": "The airplane shall be launched by hand without an additional pilot."
         },
         {
             "type": "requirement",
             "id": 2,
             "title": "Climbing",
-            "descr": "The airplane shall climb to a predefined altitude after launch and circle the launch site at this altitude.",
-            "parent": [],
-            "partition": ""
+            "descr": "The airplane shall climb to a predefined altitude after launch and circle the launch site at this altitude."
         },
         {
             "type": "requirement",
             "id": 3,
             "title": "Mission",
-            "descr": "The airplane shall be able to follow a predefined set of waypoints, consisting of latitude, longitude and altitude.",
-            "parent": [],
-            "partition": ""
+            "descr": "The airplane shall be able to follow a predefined set of waypoints, consisting of latitude, longitude and altitude."
         },
         {
             "type": "requirement",
             "id": 4,
             "title": "Landing",
-            "descr": "The airplane shall be able to follow land at a predefined landing position.",
-            "parent": [],
-            "partition": ""
+            "descr": "The airplane shall be able to follow land at a predefined landing position."
         },
         {
             "type": "requirement",
             "id": 5,
             "title": "Range",
-            "descr": "The airplane minimum range of the aircraft shall be 100km",
-            "parent": [],
-            "partition": ""
+            "descr": "The airplane minimum range of the aircraft shall be 100km"
         },
         {
             "type": "requirement",
             "id": 6,
             "title": "Error Handling",
-            "descr": "The airplane shall provide all information required for finding errors, both on the ground and when loitering.",
-            "parent": [],
-            "partition": ""
+            "descr": "The airplane shall provide all information required for finding errors, both on the ground and when loitering."
         }
     ]
 }

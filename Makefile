@@ -1,9 +1,12 @@
 REQ_JSONS := $(shell find chapters/02_requirements -name '*.json')
 REQ_TEXS := $(subst json,tex,${REQ_JSONS})
+DOTS := $(shell find . -name '*.dot')
+EPSS := $(subst dot,eps,${DOTS})
+TEXS := $(shell find . -name '.tex')
 
 all: main.pdf
 
-main.pdf: *.tex chapters/*/*.tex system.eps fcs.eps requirements.eps $(REQ_TEXS)
+main.pdf: $(TEXS) $(EPSS) $(REQ_TEXS)
 	echo "${REQ_TEXS}"
 	latexmk -pdf -d main.tex
 
@@ -18,4 +21,4 @@ main.pdf: *.tex chapters/*/*.tex system.eps fcs.eps requirements.eps $(REQ_TEXS)
 
 clean:
 	latexmk -C
-	rm -rf *.pdf $(REQ_TEXS)
+	rm -rf *.pdf $(EPSS) $(REQ_TEXS)

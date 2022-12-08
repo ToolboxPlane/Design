@@ -18,18 +18,27 @@ def main():
         out_file.write(f"\\group{{{root['title']}}}{{{root['id']}}}\n\n")
 
         for req in root["requirements"]:
+            type = req["type"]
+            id = req["id"]
+            title = req["title"]
+            descr = req["descr"]
+
             if req["type"] == "requirement":
-                out_file.write(f"\\req{{{req['id']}}}{{{req['title']}}}\n"
-                               f"{{{req['descr']}}}\n"
+                out_file.write(f"\\req{{{id}}}{{{title}}}\n"
+                               f"{{{descr}}}\n"
                                f"{{\n")
-                for parent in req["parent"]:
-                    out_file.write(f"\\parent{{{parent}}} ")
+                if "parent" in req:
+                    for parent in req["parent"]:
+                        out_file.write(f"\\parent{{{parent}}} ")
+                
+                partition = req["partition"] if "partition" in req else ""
                 out_file.write(f"}}\n"
-                               f"{{{req['partition']}}}\n\n")
+                               f"{{{partition}}}\n\n")
             else:
-                out_file.write(f"\\dd{{{req['id']}}}{{{req['title']}}}\n"
-                               f"{{{req['descr']}}}\n"
-                               f"{{{req['reason']}}}\n\n")
+                reason = req['reason']
+                out_file.write(f"\\dd{{{id}}}{{{title}}}\n"
+                               f"{{{descr}}}\n"
+                               f"{{{reason}}}\n\n")
 
 
 if __name__=="__main__":

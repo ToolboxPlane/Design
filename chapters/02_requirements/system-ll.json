@@ -1,4 +1,5 @@
 {
+    "$schema": "../../tools/schema.json",
     "title": "System Low-Level",
     "id": "Sys-LL",
     "requirements": [

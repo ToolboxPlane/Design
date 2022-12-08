@@ -1,4 +1,5 @@
 {
+    "$schema": "schema.json",
     "title": "System High-Level",
     "id": "Sys-HL",
     "requirements": [
@@ -9,8 +10,7 @@
             "descr": "The system shall be able to detect launches if the acceleration is larger than \\SI{6}{\\meter \\per \\second^2}.",
             "parent": [
                 "Prod-REQ-1"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -22,8 +22,7 @@
                 "Prod-REQ-2",
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -35,8 +34,7 @@
                 "Prod-REQ-2",
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -48,8 +46,7 @@
                 "Prod-REQ-2",
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -61,8 +58,7 @@
                 "Prod-REQ-2",
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -73,8 +69,7 @@
                 "Prod-REQ-2",
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -85,8 +80,7 @@
                 "Prod-REQ-2",
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -97,8 +91,7 @@
                 "Prod-REQ-2",
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -109,8 +102,7 @@
                 "Prod-REQ-2",
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -120,8 +112,7 @@
             "parent": [
                 "Prod-REQ-3",
                 "Prod-REQ-4"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -130,8 +121,7 @@
             "descr": "The airplane has sufficient energy to complete the required distance of 100km.",
             "parent": [
                 "Prod-REQ-5"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -140,8 +130,7 @@
             "descr": "The airplane can transmit data while loitering at the launch site.",
             "parent": [
                 "Prod-REQ-6"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "requirement",
@@ -150,14 +139,13 @@
             "descr": "Debug information transmitted by the plane can be displayed to the user.",
             "parent": [
                 "Prod-REQ-6"
-            ],
-            "partition": ""
+            ]
         },
         {
             "type": "design-decision",
             "id": 1,
             "title": "Partitioning",
-            "descr": "The system is partitioned into the following components: \\begin{itemize} \\item Mechanical: \\begin{itemize} \\item Airframe (AF) \\item Control Surfaces Actuators (CS) \\item Electric Powertrain (PW) \\end{itemize} \\item Electronical: \\begin{itemize} \\item Flightcontroller (FC) \\item Flightcomputer (FCP) \\item Power Distribution Board (PDB) \\item Navigation Board (NAV) \\item RC-Receiver (RX) \\item RC-Transmitter (TX) \\end{itemize} \\item Software: \\begin{itemize} \\item Flightcontroller-Software (FCS) \\item Flightcomputer-Software (FCPS) \\item Power Distribution Board Software (PDBS) \\item Navigation Board Software (NAVS) \\end{itemize} \\end{itemize} An overview of the data flow between the partitions is given in Figure\\ref{fig:sys-hl:partition}. \\begin{figure}[H] \\centering \\includegraphics[width=.7\\textwidth]{system.eps} \\caption{System Partitioning and Data Flow } \\label{fig:sys-hl:partition } \\end{figure}",
+            "descr": "The system is partitioned into the following components: \\begin{itemize} \\item Mechanical: \\begin{itemize} \\item Airframe (AF) \\item Control Surfaces Actuators (CS) \\item Electric Powertrain (PW) \\end{itemize} \\item Electronical: \\begin{itemize} \\item Flightcontroller (FC) \\item Flightcomputer (FCP) \\item Power Distribution Board (PDB) \\item Navigation Board (NAV) \\item RC-Receiver (RX) \\item RC-Transmitter (TX) \\end{itemize} \\item Software: \\begin{itemize} \\item Flightcontroller-Software (FCS) \\item Flightcomputer-Software (FCPS) \\item Power Distribution Board Software (PDBS) \\item Navigation Board Software (NAVS) \\end{itemize} \\end{itemize} An overview of the data flow between the partitions is given in Figure\\ref{fig:sys-hl:partition}. \\begin{figure}[H] \\centering \\includegraphics[width=.7\\textwidth]{chapters/02_requirements/system.eps} \\caption{System Partitioning and Data Flow } \\label{fig:sys-hl:partition } \\end{figure}",
             "reason": "This partitioning allows to implement the components individually from each other and thus allows to limit the complexity of the mission-critical components."
         },
         {
