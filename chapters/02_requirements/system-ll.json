@@ -1,0 +1,392 @@
+{
+    "title": "System Low-Level",
+    "id": "Sys-LL",
+    "requirements": [
+        {
+            "type": "requirement",
+            "id": 1,
+            "title": "IMU",
+            "descr": "The FC shall be equipped with an IMU.",
+            "parent": [
+                "Sys-HL-REQ-1",
+                "Sys-HL-REQ-4"
+            ],
+            "partition": "FC"
+        },
+        {
+            "type": "requirement",
+            "id": 2,
+            "title": "IMU Measurements",
+            "descr": "The FCS shall be able to read measurement data from the IMU. TODO which data",
+            "parent": [
+                "Sys-HL-REQ-1",
+                "Sys-HL-REQ-4"
+            ],
+            "partition": "FCS"
+        },
+        {
+            "type": "requirement",
+            "id": 3,
+            "title": "IMU Data Transmission",
+            "descr": "The FCS shall transmit every $\\SI{100}{\\milli\\second}$ IMU data to the FCPS.",
+            "parent": [
+                "Sys-HL-REQ-1",
+                "Sys-HL-REQ-4"
+            ],
+            "partition": "FCS"
+        },
+        {
+            "type": "requirement",
+            "id": 4,
+            "title": "IMU Data Reception",
+            "descr": "The FCPS shall be able to receive IMU data every $\\SI{100}{\\milli\\second}$.",
+
+            "parent": [
+                "Sys-HL-REQ-1",
+                "Sys-HL-REQ-4"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 5,
+            "title": "State Estimation",
+            "descr": "The FCPS shall filter the IMU and pitot data to guarantee \\begin{itemize} \\item an acceleration standard deviation less than \\SI{0.6}{\\meter \\per \\second^2} \\item the orientation with TBD performance \\item the velocity with TBD performance \\item the position with TBD performance \\item the altitude over the ground with TBD performance \\end{itemize}",
+            "parent": [
+                "Sys-HL-REQ-1",
+                "Sys-HL-REQ-2",
+                "Sys-HL-REQ-4",
+                "Sys-HL-REQ-6",
+                "Sys-HL-REQ-13"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 6,
+            "title": "Launch Detection",
+            "descr": "The FCPS shall use the estimated state to signal a detected launch if the acceleration is larger than \\SI{6}{\\meter \\per \\second}.",
+            "parent": [
+                "Sys-HL-REQ-1"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 7,
+            "title": "Pitot-Sensor",
+            "descr": "The Nav shall be equipped with a Pitot Tube for Airspeed measurements.",
+            "parent": [
+                "Sys-HL-Req-2"
+            ],
+            "partition": "NAV"
+        },
+        {
+            "type": "requirement",
+            "id": 8,
+            "title": "Velocity Measurements",
+            "descr": "The velocity shall be measured by the Nav Software.",
+            "parent": [
+                "Sys-HL-REQ-2"
+            ],
+            "partition": "NAVS"
+        },
+        {
+            "type": "requirement",
+            "id": 9,
+            "title": "Velocity Transmission",
+            "descr": "The measured velocity shall be transmitted to the FCPS every $\\SI{100}{\\milli \\second}$.",
+            "parent": [
+                "Sys-HL-REQ-2"
+            ],
+            "partition": "NAVS"
+        },
+        {
+            "type": "requirement",
+            "id": 10,
+            "title": "Velocity Reception",
+            "descr": "The FCPS shall be able to receive the velocity data every $\\SI{100}{\\milli\\second}$",
+            "parent": [
+                "Sys-HL-REQ-2"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 11,
+            "title": "Velocity Controller",
+            "descr": "The FCPS shall be able to find a motor command such that the plane achieves the error between the estimated and the desired velocity goes to zero. with TODO performance.",
+            "parent": [
+                "Sys-HL-REQ-3"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 12,
+            "title": "Motor Setpoint Transmission",
+            "descr": "The FCPS shall transmit the calculated motor setpoint every $\\SI{100}{\\milli\\second}$",
+            "parent": [
+                "Sys-HL-REQ-3"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 13,
+            "title": "Motor Setpoint Receive",
+            "descr": "The FCS shall be able to receive a motor setpoint every $\\SI{100}{\\milli\\second}$",
+            "parent": [
+                "Sys-HL-REQ-3"
+            ],
+            "partition": "FCS"
+        },
+        {
+            "type": "requirement",
+            "id": 14,
+            "title": "Motor Setpoint Command",
+            "descr": "The FCS shall transmit every motor setpoint as a command to the EP at most $\\SI{20}{\\milli\\second}$ after reception.",
+            "parent": [
+                "Sys-HL-REQ-3"
+            ],
+            "partition": "FCS"
+        },
+        {
+            "type": "requirement",
+            "id": 15,
+            "title": "Motor Command Execution",
+            "descr": "The EP shall react on every motor command in at most $\\SI{20}{\\milli\\second}$.",
+            "parent": [
+                "Sys-HL-REQ-3"
+            ],
+            "partition": "EP"
+        },
+        {
+            "type": "requirement",
+            "id": 16,
+            "title": "Motor Characterization",
+            "descr": "The EP shall react to motor commands in a deterministic manner, only influenced by the command, the load of the motor and the battery voltage. The influence of all other factors should be less than $10\\%$ under normal operating conditions. TODO what are those?",
+            "parent": ["Sys-HL-REQ-3"],
+            "partition": "EP"
+        },
+        {
+            "type": "requirement",
+            "id": 17,
+            "title": "Attitude Controller",
+            "descr": "The FCS shall compute a control surface position signal which guarantees that the measured orientation follows the orientation setpoint.",
+            "parent": [
+                "Sys-HL-REQ-5",
+                "Sys-HL-REQ-7"
+            ],
+            "partition": "FCS"
+        },
+        {
+            "type": "requirement",
+            "id": 18,
+            "title": "Servo Command Transmission",
+            "descr": "The FCS shall transmit the computed servo setpoint every $\\SI{20}{\\milli\\second}$ to the CS.",
+            "parent": [
+                "Sys-HL-REQ-5",
+                "Sys-HL-REQ-7"
+            ],
+            "partition": "CS"
+        },
+        {
+            "type": "requirement",
+            "id": 19,
+            "title": "Servo Performance",
+            "descr": "The CS shall set the position of the control surfaces in accordance with the received command.",
+            "parent": [
+                "Sys-HL-REQ-5",
+                "Sys-HL-REQ-7"
+            ],
+            "partition": "CS"
+        },
+        {
+            "type": "requirement",
+            "id": 20,
+            "title": "GPS Sensor",
+            "descr": "The NAV shall be equipped with a GPS sensor.",
+            "parent": [
+                "Sys-HL-REQ-6"
+            ],
+            "partition": "NAV"
+        },
+        {
+            "type": "requirement",
+            "id": 21,
+            "title": "GPS Measurement",
+            "descr": "The NAVS shall query the GPS sensor for new data every $\\SI{100}{\\milli\\second}$.",
+            "parent": [
+                "Sys-HL-REQ-6"
+            ],
+            "partition": "NAVS"
+        },
+        {
+            "type": "requirement",
+            "id": 22,
+            "title": "GPS Transmission",
+            "descr": "The NAVS shall transmit the GPS data every $\\SI{100}{\\milli\\second}$ to the FCPS.",
+            "parent": [
+                "Sys-HL-REQ-6"
+            ],
+            "partition": "NAVS"
+        },
+        {
+            "type": "requirement",
+            "id": 23,
+            "title": "GPS Data reception",
+            "descr": "The FCPS shall be able to receive GPS data every $\\SI{100}{\\milli\\second}$",
+            "parent": [
+                "Sys-HL-REQ-6"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 24,
+            "title": "Position Controller",
+            "descr": "The FCPS shall find a dynamically feasible trajectory of attitudes and velocities, such that the plane reaches a predefined position with an accuracy of $\\pm\\SI{3}{\\meter}$.",
+            "parent": [
+                "Sys-HL-REQ-7"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 31,
+            "title": "Barometer",
+            "descr": "The NAV shall be equipped with a barometric altimeter.",
+            "parent": [
+                "Sys-HL-REQ-13"
+            ],
+            "partition": "NAV"
+        },
+        {
+            "type": "requirement",
+            "id": 32,
+            "title": "Barometer measurement",
+            "descr": "The NAVS shall read the altimeter every $\\SI{100}{\\milli\\second}$.",
+            "parent": [
+                "Sys-HL-REQ-13"
+            ],
+            "partition": "NAVS"
+        },
+        {
+            "type": "requirement",
+            "id": 35,
+            "title": "Lidar",
+            "descr": "The NAV shall be equipped with LIDAR for altitude measurements.",
+            "parent": [
+                "Sys-HL-REQ-13"
+            ],
+            "partition": "NAV"
+        },
+        {
+            "type": "requirement",
+            "id": 36,
+            "title": "Lidar measurements",
+            "descr": "The NAVS shall read the LIDAR every $\\SI{100}{\\milli\\second}$.",
+            "parent": [
+                "Sys-HL-REQ-13"
+            ],
+            "partition": "NAVS"
+        },
+        {
+            "type": "requirement",
+            "id": 33,
+            "title": "Altitude data transmission",
+            "descr": "The NAVS shall transmit the barometric and LIDAR data every $\\SI{100}{\\milli\\second}$.",
+            "parent": [
+                "Sys-HL-REQ-13"
+            ],
+            "partition": "NAVS"
+        },
+        {
+            "type": "requirement",
+            "id": 34,
+            "title": "Altitude data reception",
+            "descr": "The FCPS shall receive the altitude data every $\\SI{100}{\\milli\\second}$.",
+            "parent": [
+                "Sys-HL-REQ-13"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 25,
+            "title": "Orientation Setpoint Transmission",
+            "descr": "The FCPS shall transmit every $\\SI{100}{\\milli\\second}$ the orientation and calculated by the position controller for the current timestep.",
+            "parent": [
+                "Sys-HL-REQ-7"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 26,
+            "title": "Orientation Setpoint Reception",
+            "descr": "The FCS shall receive the orientation setpoint from the FCPS every $\\SI{100}{\\milli\\second}$.",
+            "parent": [
+                "Sys-HL-REQ-7"
+            ],
+            "partition": "FCS"
+        },
+        {
+            "type": "requirement",
+            "id": 27,
+            "title": "Reading Mission Configuration",
+            "descr": "The FCPS shall read a list of waypoints and a target at startup. Both the waypoints and the target consists of the following information: \\begin{itemize} \\item Latitude \\item Longitude \\item Altitude above sea level \\item Optional: Heading at which to pass the point \\end{itemize}",
+            "parent": ["Sys-HL-Req-8"],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 28,
+            "title": "Waypoint Handling",
+            "descr": "The FCPS shall send the next waypoint as input to the position control and detect when a waypoint was hit and then forwards the next waypoint.",
+            "parent": [
+                "Sys-HL-Req-8"
+            ],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 29,
+            "title": "Energy Storage",
+            "descr": "The EP shall provide sufficient energy for $\\SI{2}{\\hour}$ at cruise speed.",
+            "parent": [
+                "Sys-HL-REQ-9"
+            ],
+            "partition": "EP"
+        },
+        {
+            "type": "requirement",
+            "id": 30,
+            "title": "Debug Data Collection",
+            "descr": "The FCPS shall collect the following data: \\begin{itemize} \\item All data from the FCS \\item All data from the PDBS \\item All data from the NAVS \\item The estimated state \\item The current flight state \\end{itemize}",
+            "parent": ["Sys-HL-REQ-11"],
+            "partition": "FCPS"
+        },
+        {
+            "type": "requirement",
+            "id": 37,
+            "title": "Cellular Module",
+            "descr": "The FCP shall be equipped with a transceiver for cellular communication.",
+            "parent": [
+                "Sys-HL-REQ-11"
+            ],
+            "partition": "FCP"
+        },
+        {
+            "type": "requirement",
+            "id": 38,
+            "title": "Debug Data Transmission",
+            "descr": "The FCPS shall transmit every $\\SI{100}{\\milli \\second}$ all debug data via the cellular connection.",
+            "parent": [
+                "Sys-HL-REQ-11"
+            ],
+            "partition": "FCPS"
+        }
+    ]
+}
