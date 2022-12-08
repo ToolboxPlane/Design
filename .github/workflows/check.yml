@@ -12,9 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Validate JSON
-        uses: OrRosenblatt/validate-json-action@0.1.0
-        with:
-          jsons: [chapters/02_requirements/product.json,
-                  chapters/02_requirements/system-hl.json
-                  chapters/02_requirements/system-ll.json]
+      - name: Install JSON-Check
+        run: pip install json-spec
+      - name: Validate Files
+        run: |
+          json validate --document-file=chapters/02_requirements/product.json
