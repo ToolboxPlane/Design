@@ -5,52 +5,65 @@
 
     "definitions": {
         "requirement": {
+            "title": "Requirement",
             "type": "object",
             "required": ["type", "id", "title", "descr"],
             "properties": {
                 "type": {
+                    "title": "Type",
                     "type": "string",
                     "enum": ["requirement"]
                 },
                 "id": {
+                    "title": "ID",
                     "type": "number"
                 },
                 "title": {
+                    "title": "Title",
                     "type": "string"
                 },
                 "descr": {
+                    "title": "Description",
                     "type": "string"
                 },
                 "parent": {
+                    "title": "Parent Requirements",
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
                 },
                 "partition": {
+                    "title": "Partition",
                     "type": "string",
                     "enum": ["", "FC", "FCS", "FCP", "FCPS", "NAV", "NAVS", "EP", "CS", "AF"]
                 }
             }
         },
         "design-decision": {
+            "title": "Design Decision",
             "type": "object",
             "required": ["type", "id", "title", "reason"],
             "properties": {
                 "type": {
+                    "title": "Type",
                     "type": "string",
                     "enum": ["design-decision"]
                 },
                 "id": {
+                    "title": "ID",
                     "type": "number"
                 },
                 "title": {
+                    "title": "Title",
                     "type": "string"
                 },
                 "descr": {
+                    "title": "Description",
                     "type": "string"
                 },
                 "reason": {
+                    "title": "Reasoning",
                     "type": "string"
                 }
             }
@@ -60,12 +73,15 @@
     "required": ["title", "id", "requirements"],
     "properties": {
         "title": {
+            "title": "Title",
             "type": "string"
         },
         "id": {
+            "title": "ID",
             "type": "string"
         },
         "requirements": {
+            "title": "Requirements",
             "type": "array",
             "items": {
                 "oneOf": [
