@@ -16,4 +16,4 @@ jobs:
         run: pip install json-spec
       - name: Validate Files
         run: |
-          json validate --document-file=chapters/02_requirements/product.json
+          json validate --schema-file=tools/schema.json --document-file=chapters/02_requirements/product.json
