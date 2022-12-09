@@ -21,5 +21,5 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y libxml2-utils
       - name: Validate Module
-        run: xmllint --schema tools/req_schema.xsd ${{ matrix.file }} -noout
+        run: xmllint --schema tools/req_schema.xsd chapters/02_requirements/${{ matrix.file }} -noout
           
