@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<module title="System High-Level" id="Sys-HL">
+	<requirement type="requirement" id="1">
+		<title>Launch detection</title>
+		<description>The system shall be able to detect launches if the acceleration is larger than \SI{6}{\meter \per \second^2}.</description>
+		<parents>
+			<parent>Prod-REQ-1</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="2">
+		<title>Velocity estimation</title>
+		<description>The system shall be able to estimate the current velocity. TODO precision.</description>
+		<parents>
+			<parent>Prod-REQ-1</parent>
+			<parent>Prod-REQ-2</parent>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="3">
+		<title>Velocity control</title>
+		<description>The system shall be able to control the velocity TODO performance.</description>
+		<parents>
+			<parent>Prod-REQ-1</parent>
+			<parent>Prod-REQ-2</parent>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="4">
+		<title>Attitude estimation</title>
+		<description>The system shall be able to estimate the current attitude.</description>
+		<parents>
+			<parent>Prod-REQ-1</parent>
+			<parent>Prod-REQ-2</parent>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="5">
+		<title>Attitude control</title>
+		<description>The system shall be able to control the attitude depending on the current flight situation.</description>
+		<parents>
+			<parent>Prod-REQ-1</parent>
+			<parent>Prod-REQ-2</parent>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="6">
+		<title>Position estimation</title>
+		<description>The system shall be able to estimate the current position.</description>
+		<parents>
+			<parent>Prod-REQ-2</parent>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="7">
+		<title>Position control</title>
+		<description>The system shall be able to fly to given positions.</description>
+		<parents>
+			<parent>Prod-REQ-2</parent>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="13">
+		<title>Altitude estimation</title>
+		<description>The system shall be able to estimate the current altitude over ground.</description>
+		<parents>
+			<parent>Prod-REQ-2</parent>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="14">
+		<title>Altitude control</title>
+		<description>The system shall be able to control the current altitude over ground.</description>
+		<parents>
+			<parent>Prod-REQ-2</parent>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="8">
+		<title>Mission Execution</title>
+		<description>A mission, consisting of a list of waypoints with altitude and optional heading and a target point with the same information shall be able to be flown by the plane.</description>
+		<parents>
+			<parent>Prod-REQ-3</parent>
+			<parent>Prod-REQ-4</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="9">
+		<title>Energy Storage</title>
+		<description>The airplane has sufficient energy to complete the required distance of 100km.</description>
+		<parents>
+			<parent>Prod-REQ-5</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="11">
+		<title>Debug Channel</title>
+		<description>The airplane can transmit data while loitering at the launch site.</description>
+		<parents>
+			<parent>Prod-REQ-6</parent>
+		</parents>
+	</requirement>
+	<requirement type="requirement" id="12">
+		<title>Debug Display</title>
+		<description>Debug information transmitted by the plane can be displayed to the user.</description>
+		<parents>
+			<parent>Prod-REQ-6</parent>
+		</parents>
+	</requirement>
+	<requirement type="design-decision" id="1">
+		<title>Partitioning</title>
+		<description>The system is partitioned into the following components: \begin{itemize} \item Mechanical: \begin{itemize} \item Airframe (AF) \item Control Surfaces Actuators (CS) \item Electric Powertrain (PW) \end{itemize} \item Electronical: \begin{itemize} \item Flightcontroller (FC) \item Flightcomputer (FCP) \item Power Distribution Board (PDB) \item Navigation Board (NAV) \item RC-Receiver (RX) \item RC-Transmitter (TX) \end{itemize} \item Software: \begin{itemize} \item Flightcontroller-Software (FCS) \item Flightcomputer-Software (FCPS) \item Power Distribution Board Software (PDBS) \item Navigation Board Software (NAVS) \end{itemize} \end{itemize} An overview of the data flow between the partitions is given in Figure\ref{fig:sys-hl:partition}. \begin{figure}[H] \centering \includegraphics[width=.7\textwidth]{chapters/02_requirements/system.eps} \caption{System Partitioning and Data Flow } \label{fig:sys-hl:partition } \end{figure}</description>
+		<reason>This partitioning allows to implement the components individually from each other and thus allows to limit the complexity of the mission-critical components.</reason>
+	</requirement>
+	<requirement type="design-decision" id="3">
+		<title>Frequency of FCPS control loop</title>
+		<description>The FCPS runs all control loops with at least $\SI{10}{\hertz}$.</description>
+		<reason>This guarantees sufficient time for all calculations but also guarantees a sufficient controller performance as $\SI{100}{\milli\second}$ is much smaller than all time-constants of the orientation-controlled system.</reason>
+	</requirement>
+	<requirement type="design-decision" id="4">
+		<title>Frequency of FCS control loop</title>
+		<description>The FCS runs all control loops with at least $\SI{50}{\hertz}$.</description>
+		<reason>The motor and servo commands can only be sent at this frequency, thus a faster control loop would not bring any advantages.</reason>
+	</requirement>
+	<requirement type="design-decision" id="2">
+		<title>Manual overrid</title>
+		<description>The system shall be able to be controlled manually while closer than 200m to the pilot.</description>
+		<reason>This allows handling errors during launch without risk of crashing.</reason>
+	</requirement>
+</module>

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<module title="Product" id="Prod">
+	<requirement type="requirement" id="1">
+		<title>Take-Off</title>
+		<description>The airplane shall be launched by hand without an additional pilot.</description>
+	</requirement>
+	<requirement type="requirement" id="2">
+		<title>Climbing</title>
+		<description>The airplane shall climb to a predefined altitude after launch and circle the launch site at this altitude.</description>
+	</requirement>
+	<requirement type="requirement" id="3">
+		<title>Mission</title>
+		<description>The airplane shall be able to follow a predefined set of waypoints, consisting of latitude, longitude and altitude.</description>
+	</requirement>
+	<requirement type="requirement" id="4">
+		<title>Landing</title>
+		<description>The airplane shall be able to follow land at a predefined landing position.</description>
+	</requirement>
+	<requirement type="requirement" id="5">
+		<title>Range</title>
+		<description>The airplane minimum range of the aircraft shall be 100km</description>
+	</requirement>
+	<requirement type="requirement" id="6">
+		<title>Error Handling</title>
+		<description>The airplane shall provide all information required for finding errors, both on the ground and when loitering.</description>
+	</requirement>
+</module>
