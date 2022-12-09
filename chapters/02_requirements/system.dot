@@ -34,11 +34,7 @@ digraph {
    ]
 
    NAVS -> FCPS [
-      label = "Speed,\nPosition"
-   ]
-
-   FCPS -> NAVS [
-      label = "Debug Data"
+      label = "Speed,\nAltitude"
    ]
 
    PDBS -> FCPS [
@@ -67,6 +63,10 @@ digraph {
 
    EP -> AF [
       label = "Thrust"
+   ]
+
+   FCPS -> DDS [
+      label = "Debug Data"
    ]
 
 }

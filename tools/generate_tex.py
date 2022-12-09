@@ -13,16 +13,25 @@ def main():
     tree = ET.parse(in_xml)
     root = tree.getroot()
 
+    req_ids = dict() 
+    dd_ids= dict()
+
     with open(out_tex, "w") as out_file:
         title = root.attrib["title"]
         id = root.attrib["id"]
         out_file.write(f"\\group{{{title}}}{{{id}}}\n\n")
 
         for req in root:
+            type = req.tag
             id = req.attrib["id"]
-            type = req.attrib["type"]
             title = req.find("title").text
             descr = req.find("description").text
+
+            ids = req_ids if type == "requirement" else dd_ids
+            if id in ids:
+                print(f"{in_xml}: ID {id} used by \"{ids[id]}\" and \"{title}\"")
+                exit(1)
+            ids[id] = title
 
             if type == "requirement":
                 out_file.write(f"\\req{{{id}}}{{{title}}}\n"
@@ -34,11 +43,10 @@ def main():
                         out_file.write(f"\\parent{{{parent.text}}} ")
                 
                 partition = req.find("partition")
-                partition = partition.text if partition is not None else ""
+                partition = partition.text if (partition is not None) else ""
                 out_file.write(f"}}\n"
                                f"{{{partition}}}\n\n")
             else:
-                print(id, req.tag)
                 reason = req.find('reason').text
                 out_file.write(f"\\dd{{{id}}}{{{title}}}\n"
                                f"{{{descr}}}\n"
