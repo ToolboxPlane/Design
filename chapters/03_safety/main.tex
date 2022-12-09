@@ -1,7 +1,6 @@
 \chapter{Safety Assesment}
 The following chapter lists the possible failure conditions
-of the different components, their severity and derived
-mitigations. The severity of an issue is classified in 
+and their severity. The severity of an issue is classified in 
 five levels, depending on the influence of the performance
 of the complete system, Table \ref{tab:03:severityLevels}
 list these levels.
@@ -23,43 +22,28 @@ list these levels.
     \label{tab:03:severityLevels}
 \end{table}
 
-Table \ref{tab:03:failure} lists all possible failures
-and the mitigations undertaken to reduce the risk posed
-by the failure. The extent and necessity of the mitigation
-is determined by the severity of the failure condition.
+Table \ref{tab:03:failure} lists all analyzed failures,
+the failures are determined by analyzing all external interactions
+of the systems under the aspects of availability and integrity of 
+the interaction.
 
 \begin{table}[H]
     \centering
     \begin{tabular}{l|l|l|p{5.6cm}}
         \toprule
-        Partition & Failure & Severity & Mitigation \\
+        Failure & Severity & \\
         \midrule
-        \multirow{2}{*}{AF} 
-        & Loss of lift & A & Detection by state estimation on FCP \\
-        & Loss of structural integrity & A & ? \\
-        CS 
-        & Loss of control & A & Redundant control surfaces \\
-        PW 
-        & Loss of thrust & B & Detection by state estimation and emergency landing \\
-        \midrule
-        FC \\
-        PDB \\
-        NAV \\
-        RX \\
-        TX \\
-        \midrule
-        \multirow{6}{*}{FCS}
-        & No IMU data & A & Timeout mechanism for detection, dead reckoning by FCP on error \\
-        & Wrong IMU data & A & $\chi^2$ test on FCP for detection, dead reckoning by FCP on error \\
-        & Incorrect behavior of IMU & A & Deactivation of IMU and dead reckoning by FCP \\
-        & Loss of RC link & C & Failsave detection and emergency landing \\
-        & Loss of FCP connection & C & Loss detection and switch to RC commands \\
-        & Internal Errors & A & Full testing of all components on all levels \\
-        FCPS \\
-        PDBS \\
-        NAVS \\
+        Loss of control surface actuation & A & \\
+        Invalid control surface actuation & A & \\
+        Loss of thrust & B & \\
+        Invalid thurst control & C & \\
         \bottomrule
     \end{tabular}
     \caption{Failure Conditions and Mitigations}
     \label{tab:03:failure}
 \end{table}
+
+\subsection{Root cause analysis}
+For the failures listed above all faults which will result in the failure
+shall be analyzed and mitigations to avoid the fault shall be found. 
+The extent and necessity of the mitigations are determined by the severity of the failure.

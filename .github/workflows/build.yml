@@ -32,10 +32,14 @@ jobs:
         run: sed -i 's/--export-eps/-o/g' Makefile
       - name: make
         run: make
+      - name: Move result to dir
+        run: |
+          mkdir out
+          mv main.pdf out/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: main.pdf
+          path: out/
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
