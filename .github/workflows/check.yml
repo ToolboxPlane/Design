@@ -12,10 +12,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        file: [ product.xml, system-hl.xml system-ll.xml ]
+        file: [ product.xml, system-hl.xml, system-ll.xml ]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install XML-Lint
+        run: |
+          apt-get update -y
+          apt-get install -y libxml2-utils
       - name: Validate Module
         run: xmllint --schema tools/req_schema.xsd ${{ matrix.file }} -noout
           

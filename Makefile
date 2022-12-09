@@ -13,7 +13,7 @@ main.pdf: $(TEXS) $(EPSS) $(REQ_TEXS)
 	python3 tools/generate_tex.py $< $@
 
 %.eps: %.svg
-	inkscape $< -E $@ --export-ignore-filters --export-ps-level=3
+	inkscape $< --export-eps $@ --export-ignore-filters --export-ps-level=3
 
 %.svg: %.dot
 	dot -T svg -o $@ $<
