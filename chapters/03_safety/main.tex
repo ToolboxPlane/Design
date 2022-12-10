@@ -22,6 +22,8 @@ list these levels.
     \label{tab:03:severityLevels}
 \end{table}
 
+\section{Failure Analysis}
+
 Table \ref{tab:03:failure} lists all analyzed failures,
 the failures are determined by analyzing all external interactions
 of the systems under the aspects of availability and integrity of 
@@ -29,21 +31,24 @@ the interaction.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{l|l|l|p{5.6cm}}
+    \begin{tabular}{l|l|p{6cm}}
         \toprule
         Failure & Severity & \\
         \midrule
-        Loss of control surface actuation & A & \\
-        Invalid control surface actuation & A & \\
-        Loss of thrust & B & \\
+        Loss of control surface actuation & A & Without control surface actuation no stable flight can be guaranteed \\
+        Invalid control surface actuation & A & With incorrect control surface actuation no stable flight can be guaranteed \\
+        Loss of thrust & B & Without thrust an emergency landing must be performed \\
         Invalid thurst control & C & \\
+        Loss of debug data & D & \\
+        Invalid debug data & C & \\
         \bottomrule
     \end{tabular}
-    \caption{Failure Conditions and Mitigations}
+    \caption{Failure Conditions}
     \label{tab:03:failure}
 \end{table}
 
-\subsection{Root cause analysis}
-For the failures listed above all faults which will result in the failure
-shall be analyzed and mitigations to avoid the fault shall be found. 
+\section{Fault Analysis}
+For the failures listed above, all faults by components will result in the 
+respective failure shall be analyzed and mitigations to avoid the fault 
+shall be found. 
 The extent and necessity of the mitigations are determined by the severity of the failure.

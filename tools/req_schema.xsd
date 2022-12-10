@@ -10,7 +10,27 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="partition" type="xs:string"/>
+  <xs:element name="partition">
+    <xs:simpleType>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=""/>
+      <xs:enumeration value="AF"/>
+      <xs:enumeration value="CS"/>
+      <xs:enumeration value="PW"/>
+      <xs:enumeration value="FC"/>
+      <xs:enumeration value="FCP"/>
+      <xs:enumeration value="PDB"/>
+      <xs:enumeration value="NAV"/>
+      <xs:enumeration value="RX"/>
+      <xs:enumeration value="TX"/>
+      <xs:enumeration value="FCS"/>
+      <xs:enumeration value="FCPS"/>
+      <xs:enumeration value="PDBS"/>
+      <xs:enumeration value="NAVS"/>
+      <xs:enumeration value="DDS"/>
+    </xs:restriction>
+  </xs:simpleType>
+  </xs:element>
   <xs:element name="reason" type="xs:string"/>
   <xs:element name="requirement">
     <xs:complexType>

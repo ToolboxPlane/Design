@@ -38,7 +38,7 @@ digraph {
    ]
 
    PDBS -> FCPS [
-      label = "U, I VCC and 5V"
+      label = "U, I; VCC and 5V"
    ]
 
    TX -> RX [
@@ -50,11 +50,11 @@ digraph {
    ];
 
    FCS -> CS [
-      label = "Servo Setpoint"
+      label = "Servo Command"
    ]
 
    FCS -> EP [
-      label = "Motor Setpoint"
+      label = "Motor Command"
    ]
 
    CS -> AF [

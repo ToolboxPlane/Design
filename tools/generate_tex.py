@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 def main():
     if len(sys.argv) != 3:
-        print(f"Usage {sys.argv[0]} in.json out.tex")
+        print(f"Usage {sys.argv[0]} in.xml out.tex")
         exit(1)
 
     in_xml = sys.argv[1]
@@ -17,9 +17,9 @@ def main():
     dd_ids= dict()
 
     with open(out_tex, "w") as out_file:
-        title = root.attrib["title"]
-        id = root.attrib["id"]
-        out_file.write(f"\\group{{{title}}}{{{id}}}\n\n")
+        module_title = root.attrib["title"]
+        module_id = root.attrib["id"]
+        out_file.write(f"\\section{{{module_title}}}\n\n")
 
         for req in root:
             type = req.tag
@@ -34,6 +34,7 @@ def main():
             ids[id] = title
 
             if type == "requirement":
+                id = f"{module_id}-REQ-{id}"
                 out_file.write(f"\\req{{{id}}}{{{title}}}\n"
                                f"{{{descr}}}\n"
                                f"{{")
@@ -47,6 +48,7 @@ def main():
                 out_file.write(f"}}\n"
                                f"{{{partition}}}\n\n")
             else:
+                id = f"{module_id}-DD-{id}"
                 reason = req.find('reason').text
                 out_file.write(f"\\dd{{{id}}}{{{title}}}\n"
                                f"{{{descr}}}\n"
