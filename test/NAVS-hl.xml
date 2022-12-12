@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<module title="NAVS High-Level" id="navs-hl">
+    <requirement id="1">
+        <title>Velocity Measurements</title>
+        <description>
+			The velocity shall be measured by the NAVS every
+			$\SI{100}{\milli \second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-8</parent>
+        </parents>
+        <partition>NAVS</partition>
+    </requirement>
+    <requirement id="2">
+        <title>Barometer measurement</title>
+        <description>
+			The NAVS shall read the altimeter every 
+			$\SI{100}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-32</parent>
+        </parents>
+        <partition>NAVS</partition>
+    </requirement>
+    <requirement id="3">
+        <title>Lidar measurements</title>
+        <description>
+			The NAVS shall read the LIDAR every 
+			$\SI{100}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-36</parent>
+        </parents>
+        <partition>NAVS</partition>
+    </requirement>
+    <requirement id="4">
+        <title>Nav data transmission</title>
+        <description>
+			The NAVS shall transmit the following data
+			\begin{itemize}	
+				\item Velocity
+				\item Barometric altitude
+				\item LIDAR
+			\end{itemize}
+			every $\SI{100}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-33</parent>
+        </parents>
+        <partition>NAVS</partition>
+    </requirement>
+</module>

@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<module title="FCP High-Level" id="fcp-hl">
+    <requirement id="1">
+        <title>GPS Sensor</title>
+        <description>
+			The FCP shall be equipped with a GPS sensor.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-20</parent>
+        </parents>
+        <partition>FCP</partition>
+    </requirement>
+    <requirement id="2">
+        <title>Cellular Module</title>
+        <description>
+			The FCP shall be equipped with a transceiver for cellular communication.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-37</parent>
+        </parents>
+        <partition>FCP</partition>
+    </requirement>
+    <requirement id="3">
+        <title>FCP-FC Interface</title>
+        <description>
+			The FCP shall be equipped with an interface
+			to send and receive data to the FC
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-48</parent>
+        </parents>
+        <partition>FCP</partition>
+    </requirement>
+    <requirement id="4">
+        <title>FCP-NAV Interface</title>
+        <description>
+			The FCP shall be equipped with an interface
+			to receive data from the NAV
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-50</parent>
+        </parents>
+        <partition>FCP</partition>
+    </requirement>
+    <requirement id="5">
+        <title>FCP-PDB Interface</title>
+        <description>
+			The FCP shall be equipped with an interface
+			to receive data from the PDB
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-52</parent>
+        </parents>
+        <partition>FCP</partition>
+    </requirement>
+</module>

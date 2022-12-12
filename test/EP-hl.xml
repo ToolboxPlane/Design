@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<module title="EP High-Level" id="ep-hl">
+    <requirement id="1">
+        <title>Motor Command Execution</title>
+        <description>
+			The EP shall react on every motor command in at most 
+			$\SI{20}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-15</parent>
+        </parents>
+        <partition>EP</partition>
+    </requirement>
+    <requirement id="2">
+        <title>Motor Characterization</title>
+        <description>
+			The EP shall react to motor commands in a deterministic 
+			manner, only influenced by the command, 
+			the load of the motor and the battery voltage. 
+			The influence of all other factors should be less than 
+			$10\%$ under normal operating conditions. 
+			TODO what are those?
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-16</parent>
+        </parents>
+        <partition>EP</partition>
+    </requirement>
+    <requirement id="3">
+        <title>Energy Storage</title>
+        <description>
+			The EP shall provide sufficient energy for $\SI{2}{\hour}$ at cruise speed.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-29</parent>
+        </parents>
+        <partition>EP</partition>
+    </requirement>
+</module>

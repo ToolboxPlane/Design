@@ -8,8 +8,7 @@
 %   - Parent requirements: Links to the parent requirements
 %   - Partition: Partitioning of this requirement, ignored if empty
 \newcommand{\req}[5]{
-    \fcolorbox{teal}{teal!30}{
-        \begin{minipage}{\textwidth}
+    \begin{mdframed}[backgroundcolor=teal!30, linecolor=teal]
             \subsection*{#1: #2} \label{#1}
             \paragraph{Description:}
             #3
@@ -21,8 +20,7 @@
                 \paragraph{Partition:}
                 #5
             }
-        \end{minipage}
-    }
+    \end{mdframed}
 
     \vspace{.5cm}
     
@@ -42,16 +40,14 @@
 %   - Description: The full description of the requirement
 %   - Reasoning: Reason for the choice of design decision.
 \newcommand{\dd}[4]{
-    \fcolorbox{teal}{teal!30}{
-        \begin{minipage}[l]{\textwidth}
-            \subsection*{#1: #2} \label{#1}
-            \paragraph{Description:}
-            #3
+    \begin{mdframed}[backgroundcolor=teal!30, linecolor=teal]
+        \subsection*{#1: #2} \label{#1}
+        \paragraph{Description:}
+        #3
 
-            \paragraph{Reasoning:}
-            #4
-        \end{minipage}
-    }
+        \paragraph{Reasoning:}
+        #4
+    \end{mdframed}
 
     \vspace{.5cm}
     

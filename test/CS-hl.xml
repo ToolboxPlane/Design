@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<module title="CS High-Level" id="cs-hl">
+    <requirement id="1">
+        <title>Servo Performance</title>
+        <description>
+			The CS shall set the position of the control surfaces in 
+			accordance with the received command.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-19</parent>
+        </parents>
+        <partition>CS</partition>
+    </requirement>
+</module>

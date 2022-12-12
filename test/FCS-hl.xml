@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<module title="FCS High-Level" id="fcs-hl">
+    <requirement id="1">
+        <title>IMU Measurements</title>
+        <description>
+			The FCS shall read measurement the following data
+			around all three axis
+			\begin{itemize}
+				\item Orientation angle
+				\item Rotation-rate
+				\item Acceleration
+			\end{itemize}
+			every $\SI{20}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-2</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="2">
+        <title>IMU Data Transmission</title>
+        <description>
+			The FCS shall transmit every $\SI{100}{\milli\second}$ IMU 
+			data to the FCPS.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-3</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="3">
+        <title>Motor Setpoint Receive</title>
+        <description>
+			The FCS shall be able to receive a motor setpoint every 
+			$\SI{100}{\milli\second}$
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-13</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="4">
+        <title>Motor Setpoint Command</title>
+        <description>
+			The FCS shall transmit every motor setpoint as a command to 
+			the EP at most $\SI{20}{\milli\second}$ after reception.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-14</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="5">
+        <title>Attitude Controller</title>
+        <description>
+			The FCS shall compute a servo command, 
+			which guarantees that the measured orientation 
+			follows the orientation setpoint with TODO performance,
+			every $\SI{20}{\milli \second}$.
+			
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-17</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="6">
+        <title>Servo Command Transmission</title>
+        <description>
+			The FCS shall transmit the computed servo command every 
+			$\SI{20}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-18</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="7">
+        <title>Orientation Setpoint Reception</title>
+        <description>
+			The FCS shall receive the orientation setpoint from the FCPS every $\SI{100}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-26</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="8">
+        <title>Override reception</title>
+        <description>
+			The FCS shall be able to receive
+			the override information from the RX.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-44</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="9">
+        <title>Override Command</title>
+        <description>
+			The FCS shall use the override information
+			as command if the override switch is activated.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-45</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+    <requirement id="10">
+        <title>Arm Command</title>
+        <description>
+			The FCS shall always send the motor command 0
+			if the arm switch is not activated.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-46</parent>
+        </parents>
+        <partition>FCS</partition>
+    </requirement>
+</module>

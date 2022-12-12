@@ -1,0 +1,179 @@
+<?xml version="1.0" ?>
+<module title="FCPS High-Level" id="fcps-hl">
+    <requirement id="1">
+        <title>IMU Data Reception</title>
+        <description>
+			The FCPS shall be able to receive IMU data every 
+			$\SI{100}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-4</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="2">
+        <title>State Estimation</title>
+        <description>
+			The FCPS shall filter the IMU and pitot data to guarantee 
+			\begin{itemize} 
+				\item an acceleration standard deviation less than \SI{0.6}{\meter \per \second^2} 
+				\item the orientation with TBD performance 
+				\item the velocity with TBD performance 
+				\item the position with TBD performance 
+				\item the altitude over the ground with TBD performance 
+			\end{itemize}
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-5</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="3">
+        <title>Launch Detection</title>
+        <description>
+			The FCPS shall use the estimated state to signal a 
+			launch if the acceleration is larger than 
+			$\SI{6}{\meter \per \second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-6</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="4">
+        <title>Velocity Controller</title>
+        <description>
+			The FCPS shall be able to find a motor command such that the 
+			plane achieves the error between the estimated 
+			and the desired velocity goes to zero. with TODO performance.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-11</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="5">
+        <title>Motor Setpoint Transmission</title>
+        <description>
+			The FCPS shall transmit the calculated motor setpoint every 
+			$\SI{100}{\milli\second}$
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-12</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="6">
+        <title>GPS Measurement</title>
+        <description>
+			The FCPS shall query the GPS sensor for new data every 
+			$\SI{100}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-21</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="7">
+        <title>Position Controller</title>
+        <description>
+			The FCPS shall find a dynamically feasible trajectory of 
+			attitudes and velocities, 
+			such that the plane reaches a predefined position with an 
+			accuracy of $\pm\SI{3}{\meter}$. TODO time requirement
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-24</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="8">
+        <title>Nav data reception</title>
+        <description>
+			The FCPS shall receive the NAVS data every 
+			$\SI{100}{\milli\second}$.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-34</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="9">
+        <title>Orientation Setpoint Transmission</title>
+        <description>
+			The FCPS shall transmit every $\SI{100}{\milli\second}$ the orientation and calculated by the 
+			position controller for the current timestep.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-25</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="10">
+        <title>Reading Mission Configuration</title>
+        <description>
+			The FCPS shall read a list of waypoints and a target at startup. Both the waypoints and the target 
+			consists of the following information: 
+			\begin{itemize} 
+				\item Latitude 
+				\item Longitude 
+				\item Altitude above sea level 
+				\item Optional: Heading at which to pass the point 
+			\end{itemize}
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-27</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="11">
+        <title>Waypoint Handling</title>
+        <description>
+			The FCPS shall send the next waypoint as input to the position control and detect when a waypoint was hit 
+			and then forwards the next waypoint.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-28</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="12">
+        <title>Debug Data Collection</title>
+        <description>
+			The FCPS shall collect the following data: 
+			\begin{itemize} 
+				\item All data from the FCS 
+				\item All data from the PDBS 
+				\item All data from the NAVS 
+				\item The estimated state 
+				\item The current flight state 
+			\end{itemize}
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-30</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="13">
+        <title>Debug Data Transmission</title>
+        <description>
+			The FCPS shall transmit the collected debug data every 
+			$\SI{100}{\milli \second}$ via the cellular connection.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-38</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+    <requirement id="14">
+        <title>Voltage and Current Reception</title>
+        <description>
+			The FCPS shall be able to receive PDB data every $\SI{100}{\milli \second}$
+			from the PDBS.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-57</parent>
+        </parents>
+        <partition>FCPS</partition>
+    </requirement>
+</module>

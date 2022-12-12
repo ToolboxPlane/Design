@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<module title="PDB High-Level" id="pdb-hl">
+    <requirement id="1">
+        <title>PDB-FCP Interface</title>
+        <description>
+			The PDB shall be equipped with an interface
+			to send data to the FCP
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-51</parent>
+        </parents>
+        <partition>PDB</partition>
+    </requirement>
+    <requirement id="2">
+        <title>Voltage and Current Sensor</title>
+        <description>
+			The PDB shall be able to measure the following physical quantities:
+			\begin{itemize}
+				\item Battery Voltage
+				\item Battery Current
+				\item 5V-Rail Voltage
+				\item 5V-Rail Current
+			\end{itemize}
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-54</parent>
+        </parents>
+        <partition>PDB</partition>
+    </requirement>
+</module>

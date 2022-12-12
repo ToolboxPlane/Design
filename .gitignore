@@ -11,3 +11,4 @@
 *.xdv
 *.pdf
 *.eps
+.vscode/settings.json

@@ -149,9 +149,8 @@
 					\item Flightcomputer (FCP) 
 					\item Power Distribution Board (PDB) 
 					\item Navigation Board (NAV) 
-					\item RC-Receiver (RX) 
-					\item RC-Transmitter (TX) 
-				\end{itemize} \item Software: 
+				\end{itemize} 
+				\item Software: 
 				\begin{itemize} 
 					\item Flightcontroller-Software (FCS) 
 					\item Flightcomputer-Software (FCPS) 
@@ -159,6 +158,11 @@
 					\item Navigation Board Software (NAVS) 
 					\item Debug Display Software (DDS)
 				\end{itemize} 
+				\item External Components:
+				\begin{itemize}
+					\item RC-Receiver (RX) 
+					\item RC-Transmitter (TX) 
+				\end{itemize}
 			\end{itemize} 
 			An overview of the data flow between the partitions is given in Figure \ref{fig:sys-hl:partition}. 
 			\begin{figure}[H] 

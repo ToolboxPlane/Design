@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<module title="NAV High-Level" id="nav-hl">
+    <requirement id="1">
+        <title>Pitot-Sensor</title>
+        <description>
+			The NAV shall be equipped with a Pitot tube for airspeed 
+			measurements.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-7</parent>
+        </parents>
+        <partition>NAV</partition>
+    </requirement>
+    <requirement id="2">
+        <title>Barometer</title>
+        <description>
+			The NAV shall be equipped with a barometric altimeter.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-31</parent>
+        </parents>
+        <partition>NAV</partition>
+    </requirement>
+    <requirement id="3">
+        <title>LIDAR</title>
+        <description>
+			The NAV shall be equipped with LIDAR for altitude 
+			measurements.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-35</parent>
+        </parents>
+        <partition>NAV</partition>
+    </requirement>
+    <requirement id="4">
+        <title>NAV-FCP Interface</title>
+        <description>
+			The NAV shall be equipped with an interface
+			to send data to the FCP
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-49</parent>
+        </parents>
+        <partition>NAV</partition>
+    </requirement>
+</module>

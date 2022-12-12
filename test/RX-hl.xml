@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<module title="RX High-Level" id="rx-hl">
+    <requirement id="1">
+        <title>RX reception</title>
+        <description>
+			The RX shall receive the information sent by the TX
+			and forward it to the FCP.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-42</parent>
+        </parents>
+        <partition>RX</partition>
+    </requirement>
+</module>

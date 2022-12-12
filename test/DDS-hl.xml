@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<module title="DDS High-Level" id="dds-hl">
+    <requirement id="1">
+        <title>Debug Display Data Reception</title>
+        <description>
+			The DDS shall be able to receive the debug data every 
+			$\SI{100}{\milli \second}$ via the cellular connection.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-39</parent>
+        </parents>
+        <partition>DDS</partition>
+    </requirement>
+    <requirement id="2">
+        <title>Debug Display Visualization</title>
+        <description>
+			The DDS shall be able to visualize all debug data.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-40</parent>
+        </parents>
+        <partition>DDS</partition>
+    </requirement>
+</module>

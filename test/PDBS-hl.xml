@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<module title="PDBS High-Level" id="pdbs-hl">
+    <requirement id="1">
+        <title>Voltage and Current Monitoring</title>
+        <description>
+			The PDBS shall measure the following physical quantities
+			\begin{itemize}
+				\item Battery Voltage
+				\item Battery Current
+				\item 5V-Rail Voltage
+				\item 5V-Rail Current
+			\end{itemize}
+			every $\SI{100}{\milli \second}$
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-55</parent>
+        </parents>
+        <partition>PDBS</partition>
+    </requirement>
+    <requirement id="2">
+        <title>Voltage and Current Transmission</title>
+        <description>
+			The PDBS shall transmit the measured data every $\SI{100}{\milli \second}$
+			to the FCPS.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-56</parent>
+        </parents>
+        <partition>PDBS</partition>
+    </requirement>
+</module>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <module title="System Low-Level" id="Sys-LL">
+	<!-- Structural Hardware Requirements -->
 	<requirement id="1">
 		<title>IMU</title>
 		<description>
@@ -12,6 +13,122 @@
 		</parents>
 		<partition>FC</partition>
 	</requirement>
+	<requirement id="7">
+		<title>Pitot-Sensor</title>
+		<description>
+			The NAV shall be equipped with a Pitot tube based sensor for airspeed 
+			measurements.
+		</description>
+		<parents>
+			<parent>Sys-HL-Req-2</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>NAV</partition>
+	</requirement>
+	<requirement id="20">
+		<title>GPS Sensor</title>
+		<description>
+			The FCP shall be equipped with a GPS sensor.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-6</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FCP</partition>
+	</requirement>
+	<requirement id="31">
+		<title>Barometer</title>
+		<description>
+			The NAV shall be equipped with a barometric altimeter.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-13</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>NAV</partition>
+	</requirement>
+	<requirement id="35">
+		<title>LIDAR</title>
+		<description>
+			The NAV shall be equipped with LIDAR for altitude 
+			measurements.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-13</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>NAV</partition>
+	</requirement>
+	<requirement id="54">
+		<title>Voltage and Current Sensor</title>
+		<description>
+			The PDB shall be able to measure the following physical quantities:
+			\begin{itemize}
+				\item Battery Voltage
+				\item Battery Current
+				\item 5V-Rail Voltage
+				\item 5V-Rail Current
+			\end{itemize}
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-12</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>PDB</partition>
+	</requirement>
+	<requirement id="37">
+		<title>Cellular Module</title>
+		<description>
+			The FCP shall be equipped with a transceiver for cellular communication.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-11</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FCP</partition>
+	</requirement>
+	<requirement id="29">
+		<title>Energy Storage</title>
+		<description>
+			The EP shall provide sufficient energy for $\SI{2}{\hour}$ at cruise speed.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-9</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>EP</partition>
+	</requirement>
+	<requirement id="16">
+		<title>Motor Characterization</title>
+		<description>
+			The EP shall react to commands with a deterministic thrust, 
+			only influenced by the command, 
+			the load of the motor and the battery voltage. 
+			The influence of all other factors should be less than 
+			$10\%$ under normal operating conditions. 
+			TODO what are those?
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-3</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>EP</partition>
+	</requirement>
+	<requirement id="19">
+		<title>Servo Performance</title>
+		<description>
+			The CS shall set the position of the control surfaces in 
+			accordance with the received command.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-5</parent>
+			<parent>Sys-HL-REQ-7</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>CS</partition>
+	</requirement>
+
+	<!-- Functional Hardware-Software Requirements -->
 	<requirement id="2">
 		<title>IMU Measurements</title>
 		<description>
@@ -32,34 +149,92 @@
 		</parents>
 		<partition>FCS</partition>
 	</requirement>
-	<requirement id="3">
-		<title>IMU Data Transmission</title>
+	<requirement id="8">
+		<title>Airspeed Measurements</title>
 		<description>
-			The FCS shall transmit every $\SI{100}{\milli\second}$ IMU 
-			data to the FCPS.
+			The airspeed shall be measured by the NAVS every
+			$\SI{100}{\milli \second}$.
 		</description>
 		<parents>
-			<parent>Sys-HL-REQ-1</parent>
-			<parent>Sys-HL-REQ-4</parent>
+			<parent>Sys-HL-REQ-2</parent>
 			<parent>Sys-HL-DD-1</parent>
 			<parent>Sys-HL-DD-3</parent>
 		</parents>
-		<partition>FCS</partition>
+		<partition>NAVS</partition>
 	</requirement>
-	<requirement id="4">
-		<title>IMU Data Reception</title>
+	<requirement id="21">
+		<title>GPS Measurement</title>
 		<description>
-			The FCPS shall be able to receive IMU data every 
+			The FCPS shall query the GPS sensor for new data every 
 			$\SI{100}{\milli\second}$.
 		</description>
 		<parents>
-			<parent>Sys-HL-REQ-1</parent>
-			<parent>Sys-HL-REQ-4</parent>
+			<parent>Sys-HL-REQ-6</parent>
 			<parent>Sys-HL-DD-1</parent>
 			<parent>Sys-HL-DD-3</parent>
 		</parents>
 		<partition>FCPS</partition>
 	</requirement>
+	<requirement id="32">
+		<title>Barometer measurement</title>
+		<description>
+			The NAVS shall read the altimeter every 
+			$\SI{100}{\milli\second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-13</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>NAVS</partition>
+	</requirement>
+	<requirement id="36">
+		<title>Lidar measurements</title>
+		<description>
+			The NAVS shall read the LIDAR every 
+			$\SI{100}{\milli\second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-13</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>NAVS</partition>
+	</requirement>
+	<requirement id="55">
+		<title>Voltage and Current Monitoring</title>
+		<description>
+			The PDBS shall measure the following physical quantities
+			\begin{itemize}
+				\item Battery Voltage
+				\item Battery Current
+				\item 5V-Rail Voltage
+				\item 5V-Rail Current
+			\end{itemize}
+			every $\SI{100}{\milli \second}$
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-12</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>PDBS</partition>
+	</requirement>
+	<requirement id="15">
+		<title>Motor Command Execution</title>
+		<description>
+			The EP shall react on every motor command in at most 
+			$\SI{20}{\milli\second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-3</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-4</parent>
+		</parents>
+		<partition>EP</partition>
+	</requirement>
+
+	<!-- Functional Software Requirements -->
 	<requirement id="5">
 		<title>State Estimation</title>
 		<description>
@@ -96,31 +271,6 @@
 		</parents>
 		<partition>FCPS</partition>
 	</requirement>
-	<requirement id="7">
-		<title>Pitot-Sensor</title>
-		<description>
-			The NAV shall be equipped with a Pitot tube for airspeed 
-			measurements.
-		</description>
-		<parents>
-			<parent>Sys-HL-Req-2</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>NAV</partition>
-	</requirement>
-	<requirement id="8">
-		<title>Velocity Measurements</title>
-		<description>
-			The velocity shall be measured by the NAVS every
-			$\SI{100}{\milli \second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-2</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-3</parent>
-		</parents>
-		<partition>NAVS</partition>
-	</requirement>
 	<requirement id="11">
 		<title>Velocity Controller</title>
 		<description>
@@ -133,74 +283,6 @@
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
 		<partition>FCPS</partition>
-	</requirement>
-	<requirement id="12">
-		<title>Motor Setpoint Transmission</title>
-		<description>
-			The FCPS shall transmit the calculated motor setpoint every 
-			$\SI{100}{\milli\second}$
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-3</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-3</parent>
-		</parents>
-		<partition>FCPS</partition>
-	</requirement>
-	<requirement id="13">
-		<title>Motor Setpoint Receive</title>
-		<description>
-			The FCS shall be able to receive a motor setpoint every 
-			$\SI{100}{\milli\second}$
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-3</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-3</parent>
-		</parents>
-		<partition>FCS</partition>
-	</requirement>
-	<requirement id="14">
-		<title>Motor Setpoint Command</title>
-		<description>
-			The FCS shall transmit every motor setpoint as a command to 
-			the EP at most $\SI{20}{\milli\second}$ after reception.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-3</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-4</parent>
-		</parents>
-		<partition>FCS</partition>
-	</requirement>
-	<requirement id="15">
-		<title>Motor Command Execution</title>
-		<description>
-			The EP shall react on every motor command in at most 
-			$\SI{20}{\milli\second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-3</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-4</parent>
-		</parents>
-		<partition>EP</partition>
-	</requirement>
-	<requirement id="16">
-		<title>Motor Characterization</title>
-		<description>
-			The EP shall react to motor commands in a deterministic 
-			manner, only influenced by the command, 
-			the load of the motor and the battery voltage. 
-			The influence of all other factors should be less than 
-			$10\%$ under normal operating conditions. 
-			TODO what are those?
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-3</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>EP</partition>
 	</requirement>
 	<requirement id="17">
 		<title>Attitude Controller</title>
@@ -219,57 +301,6 @@
 		</parents>
 		<partition>FCS</partition>
 	</requirement>
-	<requirement id="18">
-		<title>Servo Command Transmission</title>
-		<description>
-			The FCS shall transmit the computed servo command every 
-			$\SI{20}{\milli\second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-5</parent>
-			<parent>Sys-HL-REQ-7</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-4</parent>
-		</parents>
-		<partition>FCS</partition>
-	</requirement>
-	<requirement id="19">
-		<title>Servo Performance</title>
-		<description>
-			The CS shall set the position of the control surfaces in 
-			accordance with the received command.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-5</parent>
-			<parent>Sys-HL-REQ-7</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>CS</partition>
-	</requirement>
-	<requirement id="20">
-		<title>GPS Sensor</title>
-		<description>
-			The FCP shall be equipped with a GPS sensor.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-6</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>FCP</partition>
-	</requirement>
-	<requirement id="21">
-		<title>GPS Measurement</title>
-		<description>
-			The FCPS shall query the GPS sensor for new data every 
-			$\SI{100}{\milli\second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-6</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-3</parent>
-		</parents>
-		<partition>FCPS</partition>
-	</requirement>
 	<requirement id="24">
 		<title>Position Controller</title>
 		<description>
@@ -283,111 +314,6 @@
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
 		<partition>FCPS</partition>
-	</requirement>
-	<requirement id="31">
-		<title>Barometer</title>
-		<description>
-			The NAV shall be equipped with a barometric altimeter.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-13</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>NAV</partition>
-	</requirement>
-	<requirement id="32">
-		<title>Barometer measurement</title>
-		<description>
-			The NAVS shall read the altimeter every 
-			$\SI{100}{\milli\second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-13</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-3</parent>
-		</parents>
-		<partition>NAVS</partition>
-	</requirement>
-	<requirement id="35">
-		<title>LIDAR</title>
-		<description>
-			The NAV shall be equipped with LIDAR for altitude 
-			measurements.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-13</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>NAV</partition>
-	</requirement>
-	<requirement id="36">
-		<title>Lidar measurements</title>
-		<description>
-			The NAVS shall read the LIDAR every 
-			$\SI{100}{\milli\second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-13</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-3</parent>
-		</parents>
-		<partition>NAVS</partition>
-	</requirement>
-	<requirement id="33">
-		<title>Nav data transmission</title>
-		<description>
-			The NAVS shall transmit the following data
-			\begin{itemize}	
-				\item Velocity
-				\item Barometric altitude
-				\item LIDAR
-			\end{itemize}
-			every $\SI{100}{\milli\second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-2</parent>
-			<parent>Sys-HL-REQ-13</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-3</parent>
-		</parents>
-		<partition>NAVS</partition>
-	</requirement>
-	<requirement id="34">
-		<title>Nav data reception</title>
-		<description>
-			The FCPS shall receive the NAVS data every 
-			$\SI{100}{\milli\second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-2</parent>
-			<parent>Sys-HL-REQ-13</parent>
-			<parent>Sys-HL-DD-1</parent>
-			<parent>Sys-HL-DD-3</parent>
-		</parents>
-		<partition>FCPS</partition>
-	</requirement>
-	<requirement id="25">
-		<title>Orientation Setpoint Transmission</title>
-		<description>
-			The FCPS shall transmit every $\SI{100}{\milli\second}$ the orientation and calculated by the 
-			position controller for the current timestep.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-7</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>FCPS</partition>
-	</requirement>
-	<requirement id="26">
-		<title>Orientation Setpoint Reception</title>
-		<description>
-			The FCS shall receive the orientation setpoint from the FCPS every $\SI{100}{\milli\second}$.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-7</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>FCS</partition>
 	</requirement>
 	<requirement id="27">
 		<title>Reading Mission Configuration</title>
@@ -419,17 +345,6 @@
 		</parents>
 		<partition>FCPS</partition>
 	</requirement>
-	<requirement id="29">
-		<title>Energy Storage</title>
-		<description>
-			The EP shall provide sufficient energy for $\SI{2}{\hour}$ at cruise speed.
-		</description>
-		<parents>
-			<parent>Sys-HL-REQ-9</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>EP</partition>
-	</requirement>
 	<requirement id="30">
 		<title>Debug Data Collection</title>
 		<description>
@@ -448,16 +363,228 @@
 		</parents>
 		<partition>FCPS</partition>
 	</requirement>
-	<requirement id="37">
-		<title>Cellular Module</title>
+	<requirement id="40">
+		<title>Debug Display Visualization</title>
 		<description>
-			The FCP shall be equipped with a transceiver for cellular communication.
+			The DDS shall be able to visualize all debug data.
 		</description>
 		<parents>
-			<parent>Sys-HL-REQ-11</parent>
+			<parent>Sys-HL-REQ-12</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>DDS</partition>
+	</requirement>
+	<requirement id="45">
+		<title>Override Command</title>
+		<description>
+			The FCS shall use the override information
+			as command if the override switch is activated.
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-2</parent>
+		</parents>
+		<partition>FCS</partition>
+	</requirement>
+	<requirement id="46">
+		<title>Arm Command</title>
+		<description>
+			The FCS shall always send the motor command 0
+			if the arm switch is not activated.
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-2</parent>
+		</parents>
+		<partition>FCS</partition>
+	</requirement>
+
+	<!-- Structural Interface Requirements -->
+	<requirement id="47">
+		<title>FC-FCP Interface</title>
+		<description>
+			The FC shall be equipped with an interface
+			to send and receive data to the FCP
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FC</partition>
+	</requirement>
+	<requirement id="48">
+		<title>FCP-FC Interface</title>
+		<description>
+			The FCP shall be equipped with an interface
+			to send and receive data to the FC
+		</description>
+		<parents>
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
 		<partition>FCP</partition>
+	</requirement>
+	<requirement id="49">
+		<title>NAV-FCP Interface</title>
+		<description>
+			The NAV shall be equipped with an interface
+			to send data to the FCP
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>NAV</partition>
+	</requirement>
+	<requirement id="50">
+		<title>FCP-NAV Interface</title>
+		<description>
+			The FCP shall be equipped with an interface
+			to receive data from the NAV
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FCP</partition>
+	</requirement>
+	<requirement id="51">
+		<title>PDB-FCP Interface</title>
+		<description>
+			The PDB shall be equipped with an interface
+			to send data to the FCP
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>PDB</partition>
+	</requirement>
+	<requirement id="52">
+		<title>FCP-PDB Interface</title>
+		<description>
+			The FCP shall be equipped with an interface
+			to receive data from the PDB
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FCP</partition>
+	</requirement>
+	<requirement id="53">
+		<title>Servo and Motor Interface</title>
+		<description>
+			The FC shall be equipped with an interface
+			to send commands to the CS and EP
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FC</partition>
+	</requirement>
+	<requirement id="43">
+		<title>FC-RX Interface</title>
+		<description>
+			The FC shall be able to receive commands 
+			from the RX.
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-2</parent>
+		</parents>
+		<partition>FC</partition>
+	</requirement>
+
+	<!-- Functional Interface Requirements -->
+	<requirement id="3">
+		<title>FCS data transmission</title>
+		<description>
+			The FCS shall transmit IMU data every $\SI{100}{\milli\second}$ 
+			to the FCPS.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-1</parent>
+			<parent>Sys-HL-REQ-4</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>FCS</partition>
+	</requirement>
+	<requirement id="4">
+		<title>FCS data reception</title>
+		<description>
+			The FCPS shall be able to receive FCS data every 
+			$\SI{100}{\milli\second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-1</parent>
+			<parent>Sys-HL-REQ-4</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>FCPS</partition>
+	</requirement>
+	<requirement id="33">
+		<title>NAVS data transmission</title>
+		<description>
+			The NAVS shall transmit the following data
+			\begin{itemize}	
+				\item Velocity
+				\item Barometric altitude
+				\item LIDAR
+			\end{itemize}
+			every $\SI{100}{\milli\second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-2</parent>
+			<parent>Sys-HL-REQ-13</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>NAVS</partition>
+	</requirement>
+	<requirement id="34">
+		<title>NAVS data reception</title>
+		<description>
+			The FCPS shall receive the NAVS data every 
+			$\SI{100}{\milli\second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-2</parent>
+			<parent>Sys-HL-REQ-13</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>FCPS</partition>
+	</requirement>
+	<requirement id="56">
+		<title>PDBS data transmission</title>
+		<description>
+			The PDBS shall transmit the measured data every $\SI{100}{\milli \second}$
+			to the FCPS.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-12</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>PDBS</partition>
+	</requirement>
+	<requirement id="57">
+		<title>PDBS data reception</title>
+		<description>
+			The FCPS shall be able to receive PDB data every $\SI{100}{\milli \second}$
+			from the PDBS.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-12</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>FCPS</partition>
+	</requirement>
+	<requirement id="42">
+		<title>RX reception</title>
+		<description>
+			The RX shall receive the information sent by the TX
+			and forward it to the FCP.
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-2</parent>
+		</parents>
+		<partition>RX</partition>
 	</requirement>
 	<requirement id="38">
 		<title>Debug Data Transmission</title>
@@ -483,19 +610,84 @@
 		</parents>
 		<partition>DDS</partition>
 	</requirement>
-	<requirement id="40">
-		<title>Debug Display Visualization</title>
+	<requirement id="13">
+		<title>Motor Setpoint Receive</title>
 		<description>
-			The DDS shall be able to visualize all debug data.
+			The FCS shall be able to receive a motor setpoint every 
+			$\SI{100}{\milli\second}$
 		</description>
 		<parents>
-			<parent>Sys-HL-REQ-12</parent>
+			<parent>Sys-HL-REQ-3</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>FCS</partition>
+	</requirement>
+	<requirement id="14">
+		<title>Motor Command</title>
+		<description>
+			The FCS shall transmit every motor setpoint as a command to 
+			the EP at most $\SI{20}{\milli\second}$ after reception.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-3</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-4</parent>
+		</parents>
+		<partition>FCS</partition>
+	</requirement>
+	<requirement id="25">
+		<title>Orientation Setpoint Transmission</title>
+		<description>
+			The FCPS shall transmit every $\SI{100}{\milli\second}$ the orientation and calculated by the 
+			position controller for the current timestep.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-7</parent>
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
-		<partition>DDS</partition>
+		<partition>FCPS</partition>
+	</requirement>
+	<requirement id="26">
+		<title>Orientation Setpoint Reception</title>
+		<description>
+			The FCS shall receive the orientation setpoint from the FCPS every $\SI{100}{\milli\second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-7</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FCS</partition>
+	</requirement>
+	<requirement id="12">
+		<title>Motor Setpoint Transmission</title>
+		<description>
+			The FCPS shall transmit the calculated motor setpoint every 
+			$\SI{100}{\milli\second}$
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-3</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-3</parent>
+		</parents>
+		<partition>FCPS</partition>
+	</requirement>
+	<requirement id="18">
+		<title>Servo Command Transmission</title>
+		<description>
+			The FCS shall transmit the computed servo command every 
+			$\SI{20}{\milli\second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-5</parent>
+			<parent>Sys-HL-REQ-7</parent>
+			<parent>Sys-HL-DD-1</parent>
+			<parent>Sys-HL-DD-4</parent>
+		</parents>
+		<partition>FCS</partition>
 	</requirement>
 	<requirement id="41">
-		<title>TX commands</title>
+		<title>TX command transmission</title>
 		<description>
 			The TX shall transmit the following information:
 			\begin{itemize}
@@ -510,55 +702,11 @@
 		</parents>
 		<partition>TX</partition>
 	</requirement>
-	<requirement id="42">
-		<title>RX reception</title>
-		<description>
-			The RX shall receive the information sent by the TX
-			and forward it to the FCP.
-		</description>
-		<parents>
-			<parent>Sys-HL-DD-2</parent>
-		</parents>
-		<partition>RX</partition>
-	</requirement>
-	<requirement id="43">
-		<title>Override port</title>
-		<description>
-			The FC shall be able to receive information
-			from the RX.
-		</description>
-		<parents>
-			<parent>Sys-HL-DD-2</parent>
-		</parents>
-		<partition>FC</partition>
-	</requirement>
 	<requirement id="44">
 		<title>Override reception</title>
 		<description>
 			The FCS shall be able to receive
 			the override information from the RX.
-		</description>
-		<parents>
-			<parent>Sys-HL-DD-2</parent>
-		</parents>
-		<partition>FCS</partition>
-	</requirement>
-	<requirement id="45">
-		<title>Override Command</title>
-		<description>
-			The FCS shall use the override information
-			as command if the override switch is activated.
-		</description>
-		<parents>
-			<parent>Sys-HL-DD-2</parent>
-		</parents>
-		<partition>FCS</partition>
-	</requirement>
-	<requirement id="46">
-		<title>Arm Command</title>
-		<description>
-			The FCS shall always send the motor command 0
-			if the arm switch is not activated.
 		</description>
 		<parents>
 			<parent>Sys-HL-DD-2</parent>

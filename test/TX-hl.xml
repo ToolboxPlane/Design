@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<module title="TX High-Level" id="tx-hl">
+    <requirement id="1">
+        <title>TX commands</title>
+        <description>
+			The TX shall transmit the following information:
+			\begin{itemize}
+				\item Motor arm switch position
+				\item Manual override switch position
+				\item Motor setpoint override
+				\item Servo setpoint override
+			\end{itemize}
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-41</parent>
+        </parents>
+        <partition>TX</partition>
+    </requirement>
+</module>
