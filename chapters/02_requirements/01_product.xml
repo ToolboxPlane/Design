@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<module title="Product" id="Prod">
+	<requirement id="1">
+		<title>Take-Off</title>
+		<description>
+			The airplane shall be launched by a single person by throwing the plane.
+		</description>
+		<parents></parents>
+		<partition></partition>
+	</requirement>
+	<requirement id="2">
+		<title>Climbing</title>
+		<description>
+			The airplane shall climb to a predefined altitude (tolerance $\pm\SI{5}{\meter}$) 
+			and predefined velocity (tolerance $\pm 25\%$)
+			after launch and circle the launch site at this altitude (radius tolerance $\pm\SI{3}{\meter}$).
+		</description>
+		<parents></parents>
+		<partition></partition>
+	</requirement>
+	<requirement id="3">
+		<title>Mission</title>
+		<description>
+			The airplane shall be able to follow a predefined set of waypoints, 
+			consisting of latitude, longitude and altitude. Each waypoint should be traversed
+			with a tolerance of $\pm\SI{2}{\meter}$ horizontally and $\SI{5}{\meter}$ vertically
+			at a predefined velocity (tolerance $\pm 25\%$).
+		</description>
+		<parents></parents>
+		<partition></partition>
+	</requirement>
+	<requirement id="4">
+		<title>Landing</title>
+		<description>
+			The airplane shall be able to land at a predefined landing position with an accuracy of 
+			$\pm\SI{2}{\meter}$ orthogonal to the landing direction and $\pm\SI{10}{\meter}$ in the landing
+			direction.
+		</description>
+		<parents></parents>
+		<partition></partition>
+	</requirement>
+	<requirement id="5">
+		<title>Range</title>
+		<description>
+			The airplane minimum range of the aircraft shall be 100km
+		</description>
+		<parents></parents>
+		<partition></partition>
+	</requirement>
+	<requirement id="6">
+		<title>Error Handling</title>
+		<description>
+			The airplane shall provide all information required for finding errors, both on the ground and when loitering.
+		</description>
+		<parents></parents>
+		<partition></partition>
+	</requirement>
+</module>

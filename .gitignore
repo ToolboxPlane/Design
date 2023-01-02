@@ -11,4 +11,5 @@
 *.xdv
 *.pdf
 *.eps
-.vscode/settings.json
+.vscode
+__pycache__

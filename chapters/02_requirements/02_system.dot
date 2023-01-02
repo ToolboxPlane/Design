@@ -20,8 +20,8 @@ digraph {
    }
 
    AF;
-   CS;
-   EP;
+   SA;
+   PW;
    RX;
    TX;
 
@@ -49,19 +49,19 @@ digraph {
       label = "Servo,\nMotor Setpoint"
    ];
 
-   FCS -> CS [
+   FCS -> SA [
       label = "Servo Command"
    ]
 
-   FCS -> EP [
+   FCS -> PW [
       label = "Motor Command"
    ]
 
-   CS -> AF [
+   SA -> AF [
       label = "Elevon Deflection"
    ]
 
-   EP -> AF [
+   PW -> AF [
       label = "Thrust"
    ]
 

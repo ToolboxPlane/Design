@@ -38,7 +38,7 @@ def main():
                 sorted_reqs[partition].append(req_tuple) 
 
     for partition, reqs in sorted_reqs.items():
-        new_root = ET.Element("module", title=f"{partition} High-Level", id=f"{partition.lower()}-hl")
+        new_root = ET.Element("module", title=f"{partition} High-Level", id=f"{partition}-HL")
         for id, (title, descr, parent_id) in enumerate(reqs):
             req_root = ET.SubElement(new_root, "requirement", id=str(id+1))
             ET.SubElement(req_root, "title").text = title
@@ -50,7 +50,7 @@ def main():
         rough_string = ET.tostring(new_root, 'utf-8')
         reparsed = minidom.parseString(rough_string)
         text = reparsed.toprettyxml(indent="    ")
-        with open(f"{out_dir}/{partition}-hl.xml", "w") as out_file:
+        with open(f"{out_dir}/{partition.lower()}-hl.xml", "w") as out_file:
             out_file.write(text)
 
 

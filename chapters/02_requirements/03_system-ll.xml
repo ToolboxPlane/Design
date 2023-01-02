@@ -127,6 +127,54 @@
 		</parents>
 		<partition>CS</partition>
 	</requirement>
+	<requirement id="58">
+		<title>Control Surfaces</title>
+		<description>
+			The AF shall be equipped with two elevons which allow for
+			control of both the roll and pitch axis.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-5</parent>
+			<parent>Sys-HL-REQ-7</parent>
+			<parent>Sys-HL-REQ-14</parent>
+			<parent>Sys-HL-REQ-8</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>AF</partition>
+	</requirement>
+	<requirement id="59">
+		<title>Lift</title>
+		<description>
+			The AF shall provide sufficient lift for TODO	
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-5</parent>
+			<parent>Sys-HL-REQ-7</parent>
+			<parent>Sys-HL-REQ-14</parent>
+			<parent>Sys-HL-REQ-8</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>AF</partition>
+	</requirement>
+	<requirement id="60">
+		<title>Mounting</title>
+		<description>
+			The AF shall provide mounting places for the following
+			components:
+			\begin{itemize}
+				\item SA
+				\item PW
+				\item FC
+				\item FCP
+				\item PDB
+				\item NAV
+			\end{itemize}
+		</description>
+		<parents>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>AF</partition>
+	</requirement>
 
 	<!-- Functional Hardware-Software Requirements -->
 	<requirement id="2">
@@ -240,12 +288,14 @@
 		<description>
 			The FCPS shall filter the IMU and pitot data to guarantee 
 			\begin{itemize} 
-				\item an acceleration standard deviation less than \SI{0.6}{\meter \per \second^2} 
+				\item an acceleration standard deviation less than \SI{0.6}{\meter \per \second^2} TODO argumentation
 				\item the orientation with TBD performance 
-				\item the velocity with TBD performance 
+				\item the velocity with $2 \sigma \le \hat{v} \cdot 10 \%$
 				\item the position with TBD performance 
 				\item the altitude over the ground with TBD performance 
 			\end{itemize}
+			Note: the accuracy requirements are reformulated as requirements regarding the standard deviation,
+			using a confidence bound of $95\% \equiv 2 \sigma$.
 		</description>
 		<parents>
 			<parent>Sys-HL-REQ-1</parent>
@@ -258,6 +308,34 @@
 		</parents>
 		<partition>FCPS</partition>
 	</requirement>
+	<requirement id="27">
+		<title>Reading Mission Configuration</title>
+		<description>
+			The FCPS shall read a list of waypoints and a target at startup. Both the waypoints and the target 
+			consists of the following information: 
+			\begin{itemize} 
+				\item Latitude 
+				\item Longitude 
+				\item Altitude above sea level 
+				\item Optional: Heading at which to pass the point 
+			\end{itemize}
+		</description>
+		<parents>
+			<parent>Sys-HL-Req-8</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FCPS</partition>
+	</requirement>
+	<requirement id="61">
+		<title>Mission State</title>
+		<description>
+			The FCPS shall call the correct mission subprogram
+			and switch mission state depending on the output of this subprogram.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-8</parent>
+		</parents>
+	</requirement>
 	<requirement id="6">
 		<title>Launch Detection</title>
 		<description>
@@ -267,6 +345,33 @@
 		</description>
 		<parents>
 			<parent>Sys-HL-REQ-1</parent>
+			<parent>Sys-HL-REQ-8</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FCPS</partition>
+	</requirement>
+	<requirement id="6">
+		<title>Launch</title>
+		<description>
+			The FCPS shall use the estimated state to signal a 
+			launch if the acceleration is larger than 
+			$\SI{6}{\meter \per \second}$.
+		</description>
+		<parents>
+			<parent>Sys-HL-REQ-1</parent>
+			<parent>Sys-HL-REQ-8</parent>
+			<parent>Sys-HL-DD-1</parent>
+		</parents>
+		<partition>FCPS</partition>
+	</requirement>
+	<requirement id="28">
+		<title>Waypoint Handling</title>
+		<description>
+			The FCPS shall send the next waypoint as input to the position control and detect when a waypoint was hit 
+			and then forwards the next waypoint.
+		</description>
+		<parents>
+			<parent>Sys-HL-Req-8</parent>
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
 		<partition>FCPS</partition>
@@ -311,36 +416,6 @@
 		</description>
 		<parents>
 			<parent>Sys-HL-REQ-7</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>FCPS</partition>
-	</requirement>
-	<requirement id="27">
-		<title>Reading Mission Configuration</title>
-		<description>
-			The FCPS shall read a list of waypoints and a target at startup. Both the waypoints and the target 
-			consists of the following information: 
-			\begin{itemize} 
-				\item Latitude 
-				\item Longitude 
-				\item Altitude above sea level 
-				\item Optional: Heading at which to pass the point 
-			\end{itemize}
-		</description>
-		<parents>
-			<parent>Sys-HL-Req-8</parent>
-			<parent>Sys-HL-DD-1</parent>
-		</parents>
-		<partition>FCPS</partition>
-	</requirement>
-	<requirement id="28">
-		<title>Waypoint Handling</title>
-		<description>
-			The FCPS shall send the next waypoint as input to the position control and detect when a waypoint was hit 
-			and then forwards the next waypoint.
-		</description>
-		<parents>
-			<parent>Sys-HL-Req-8</parent>
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
 		<partition>FCPS</partition>

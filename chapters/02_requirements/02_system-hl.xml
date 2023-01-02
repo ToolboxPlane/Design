@@ -3,7 +3,7 @@
 	<requirement id="1">
 		<title>Launch detection</title>
 		<description>
-			The system shall be able to detect launches if the acceleration is larger than \SI{6}{\meter \per \second^2}.
+			The plane shall signal a launch if the acceleration is larger than \SI{6}{\meter \per \second^2}.
 		</description>
 		<parents>
 			<parent>Prod-REQ-1</parent>
@@ -12,7 +12,9 @@
 	</requirement>
 	<requirement id="2">
 		<title>Velocity estimation</title>
-		<description>The system shall be able to estimate the current velocity. TODO precision.</description>
+		<description>
+			The plane shall estimate the current velocity with a relative error of less than $10\%$.
+		</description>
 		<parents>
 			<parent>Prod-REQ-1</parent>
 			<parent>Prod-REQ-2</parent>
@@ -23,7 +25,10 @@
 	</requirement>
 	<requirement id="3">
 		<title>Velocity control</title>
-		<description>The system shall be able to control the velocity TODO performance.</description>
+		<description>
+			The plane shall be able to control the velocity such that the relative error
+			between estimated velocity and desired velociy is less than $10\%$ after $\SI{10}{\second}$.
+		</description>
 		<parents>
 			<parent>Prod-REQ-1</parent>
 			<parent>Prod-REQ-2</parent>
@@ -34,7 +39,9 @@
 	</requirement>
 	<requirement id="4">
 		<title>Attitude estimation</title>
-		<description>The system shall be able to estimate the current attitude.</description>
+		<description>
+			The plane shall be able to estimate the current attitude with an error of less than $\SI{5}{\degree}$.
+		</description>
 		<parents>
 			<parent>Prod-REQ-1</parent>
 			<parent>Prod-REQ-2</parent>
@@ -46,7 +53,8 @@
 	<requirement id="5">
 		<title>Attitude control</title>
 		<description>
-			The system shall be able to control the attitude depending on the current flight situation.
+			The plane shall be able to control the attitude such that the error between estimated attitude
+			and actual attitude is less than $\SI{10}{\degree}$ after $\SI{10}{\second}$.
 		</description>
 		<parents>
 			<parent>Prod-REQ-1</parent>
@@ -58,7 +66,9 @@
 	</requirement>
 	<requirement id="6">
 		<title>Position estimation</title>
-		<description>The system shall be able to estimate the current position.</description>
+		<description>
+			The plane shall be able to estimate the current position with an accuracy of $\pm \SI{1}{\meter}$.
+		</description>
 		<parents>
 			<parent>Prod-REQ-2</parent>
 			<parent>Prod-REQ-3</parent>
@@ -68,7 +78,10 @@
 	</requirement>
 	<requirement id="7">
 		<title>Position control</title>
-		<description>The system shall be able to fly to given positions.</description>
+		<description>
+			The plane shall be able to find a path to a position such that the distance between the
+			estimated position and the desired position is less than $\SI{1}{\meter}$.
+		</description>
 		<parents>
 			<parent>Prod-REQ-2</parent>
 			<parent>Prod-REQ-3</parent>
@@ -78,7 +91,11 @@
 	</requirement>
 	<requirement id="13">
 		<title>Altitude estimation</title>
-		<description>The system shall be able to estimate the current altitude over ground.</description>
+		<description>
+			The plane shall be able to estimate the current altitude over ground with an error
+			of less than $\SI{0.2}{\meter}$ while lower than $\SI{20}{\meter}$ and
+			less than $\SI{2}{\meter}$ while higher thant $\SI{20}{\meter}$ above ground.
+		</description>
 		<parents>
 			<parent>Prod-REQ-2</parent>
 			<parent>Prod-REQ-3</parent>
@@ -88,7 +105,10 @@
 	</requirement>
 	<requirement id="14">
 		<title>Altitude control</title>
-		<description>The system shall be able to control the current altitude over ground.</description>
+		<description>
+			The plane shall be able to control the current altitude over ground such the error
+			between estimated and desired altitude is less than $\SI{0.5}{\meter}$.
+		</description>
 		<parents>
 			<parent>Prod-REQ-2</parent>
 			<parent>Prod-REQ-3</parent>
@@ -99,8 +119,18 @@
 	<requirement id="8">
 		<title>Mission Execution</title>
 		<description>
-			A mission, consisting of a list of waypoints with altitude and optional heading and a target point with the same 
-			information shall be able to be flown by the plane.
+			The airplane shall be able to fly a mission consisting of the following states:
+			\begin{enumerate}
+				\item Pre-Takeoff
+				\item Launch
+				\item Loiter
+				\item Waypoint following
+				\item Approach
+				\item Landing
+				\item Mission completion
+			\end{enumerate}
+
+			A waypoint consist of latitude, longitude and altitude information and optional heading.
 		</description>
 		<parents>
 			<parent>Prod-REQ-3</parent>
@@ -135,12 +165,12 @@
 	<design-decision id="1">
 		<title>Partitioning</title>
 		<description>
-			The system is partitioned into the following components: 
+			The plane is partitioned into the following components: 
 			\begin{itemize} 
 				\item Mechanical: 
 				\begin{itemize} 
 					\item Airframe (AF) 
-					\item Control Surfaces Actuators (CS) 
+					\item Surfaces Actuators (SA) 
 					\item Electric Powertrain (PW) 
 				\end{itemize} 
 				\item Electronical: 
@@ -167,7 +197,7 @@
 			An overview of the data flow between the partitions is given in Figure \ref{fig:sys-hl:partition}. 
 			\begin{figure}[H] 
 				\centering 
-				\includegraphics[width=.7\textwidth]{chapters/02_requirements/system.eps} 
+				\includegraphics[width=.7\textwidth]{chapters/02_requirements/02_system.eps} 
 				\caption{System Partitioning and Data Flow} 
 				\label{fig:sys-hl:partition} 
 			\end{figure}
@@ -196,7 +226,7 @@
 	</design-decision>
 	<design-decision id="2">
 		<title>Manual override</title>
-		<description>The system shall be able to be controlled manually while closer than 200m to the pilot.</description>
+		<description>The plane shall be able to be controlled manually while closer than 200m to the pilot.</description>
 		<reason>This allows handling errors during launch without risk of crashing.</reason>
 	</design-decision>
 </module>

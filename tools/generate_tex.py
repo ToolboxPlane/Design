@@ -1,5 +1,5 @@
 import sys
-import xml.etree.ElementTree as ET
+import req_lib
 
 
 def main():
@@ -10,49 +10,27 @@ def main():
     in_xml = sys.argv[1]
     out_tex = sys.argv[2]
 
-    tree = ET.parse(in_xml)
-    root = tree.getroot()
-
-    req_ids = dict() 
-    dd_ids= dict()
+    module = req_lib.Module(in_xml)
 
     with open(out_tex, "w") as out_file:
-        module_title = root.attrib["title"]
-        module_id = root.attrib["id"]
-        out_file.write(f"\\section{{{module_title}}}\n\n")
+        out_file.write(f"\\section{{{module.title}}}\n\n")
 
-        for req in root:
-            type = req.tag
-            id = req.attrib["id"]
-            title = req.find("title").text
-            descr = req.find("description").text
-
-            ids = req_ids if type == "requirement" else dd_ids
-            if id in ids:
-                print(f"{in_xml}: ID {id} used by \"{ids[id]}\" and \"{title}\"")
-                exit(1)
-            ids[id] = title
-
-            if type == "requirement":
-                id = f"{module_id}-REQ-{id}"
-                out_file.write(f"\\req{{{id}}}{{{title}}}\n"
-                               f"{{{descr}}}\n"
-                               f"{{")
-                parents = req.find("parents")
-                if parents is not None:
-                    for parent in parents:
-                        out_file.write(f"\\parent{{{parent.text}}} ")
-                
-                partition = req.find("partition")
-                partition = partition.text if (partition is not None) else ""
-                out_file.write(f"}}\n"
-                               f"{{{partition}}}\n\n")
+        for req in module.reqs:
+            out_file.write(f"\\req{{{req.id}}}{{{req.title}}}\n"
+                            f"{{{req.descr}}}\n"
+                            f"{{")
+            for parent in req.parents:
+                out_file.write(f"\\parent{{{parent}}} ")
+            out_file.write("}")
+            
+            if req.partition is not None:
+                out_file.write(f"{{{req.partition}}}\n\n")
             else:
-                id = f"{module_id}-DD-{id}"
-                reason = req.find('reason').text
-                out_file.write(f"\\dd{{{id}}}{{{title}}}\n"
-                               f"{{{descr}}}\n"
-                               f"{{{reason}}}\n\n")
+                out_file.write("{}")
+        for dd in module.dds:
+            out_file.write(f"\\dd{{{dd.id}}}{{{dd.title}}}\n"
+                            f"{{{dd.descr}}}\n"
+                            f"{{{dd.reason}}}\n\n")
 
 
 if __name__=="__main__":
