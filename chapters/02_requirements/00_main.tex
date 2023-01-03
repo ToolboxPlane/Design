@@ -1,0 +1,27 @@
+\chapter{Requirements}
+This chapter shall capture all requirements posed to the
+system by this task and refine them to use as a basis for
+both implementation and verification.
+The refinement consists of multiple levels:
+firstly the product requirements capture the which are directly
+derived from the task. The System High-Level requirements
+decompose the individual requirements into verifiable
+requirements. The System Low-Level requirements refine the 
+High-Level requirements to allocate them exclusively to one
+component. The System Low-Level requirements for a component
+are then used as High-Level requirements for the respective
+component. The complete requirements hierarchy is depicted
+in Figure \ref{fig:reqStructure}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{chapters/02_requirements/00_requirements.eps}
+    \caption{Structure of the requirements.} 
+    \label{fig:reqStructure}
+\end{figure}
+
+\newpage
+
+\input{chapters/02_requirements/01_product.tex}
+\input{chapters/02_requirements/02_system-hl.tex}
+\input{chapters/02_requirements/03_system-ll.tex}

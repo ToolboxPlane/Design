@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        file: [ product.xml, system-hl.xml, system-ll.xml ]
+        file: [ 01_product.xml, 02_system-hl.xml, 03_system-ll.xml ]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
