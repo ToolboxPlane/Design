@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+import xml.dom.minidom as minidom
 
 class ReqBase:
     def __init__(self, id : int, title : str, descr : str) -> None:
@@ -29,6 +30,15 @@ class Requirement(ReqBase):
         partition = xml_req.find("partition")
         self.partition = partition.text if (partition is not None) else None
 
+    def xml(self, parent):
+        req_root = ET.SubElement(parent, "requirement", id=self.id)
+        ET.SubElement(req_root, "title").text = self.title
+        ET.SubElement(req_root, "description").text = self.descr
+        parents = ET.SubElement(req_root, "parents")
+        for parent in self.parents:
+            ET.SubElement(parents, "parent").text = parent
+        ET.SubElement(req_root, "partition").text = self.partition
+
 
 class DesignDecision(ReqBase):
     def __init__(self, id : int, title : str, descr : str, reason : str) -> None:
@@ -39,7 +49,11 @@ class DesignDecision(ReqBase):
         super().__init__(xml_req=xml_req, module_id=module_id, req_type="DD")
         self.reason = xml_req.find('reason').text
 
-
+    def xml(self, parent):
+        req_root = ET.SubElement(parent, "requirement", id=self.id)
+        ET.SubElement(req_root, "title").text = self.title
+        ET.SubElement(req_root, "description").text = self.descr
+        ET.SubElement(req_root, "reason").text = self.reason
 
 class Module:
     def __init__(self, xml_file) -> None:
@@ -58,3 +72,17 @@ class Module:
                 self.reqs.append(Requirement(req, module_id=self.id))
             else:
                 self.dds.append(DesignDecision(req, module_id=self.id))
+
+    def xml(self):
+        root = ET.Element("module", title=self.title, id=self.id)
+        for req in self.reqs:
+            req.xml(root)
+        for dd in self.dds:
+            dd.xml(root)
+
+        rough_string = ET.tostring(root, 'utf-8')
+        reparsed = minidom.parseString(rough_string)
+        text = reparsed.toprettyxml(indent="    ")
+        return text
+
+    

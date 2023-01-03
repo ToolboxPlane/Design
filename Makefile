@@ -9,6 +9,9 @@ all: main.pdf
 main.pdf: $(TEXS) $(EPSS) $(REQ_TEXS)
 	latexmk -pdf -d main.tex
 
+main.html: $(TEXS) $(EPSS) $(REQ_TEXS)
+	htlatex main.tex	
+
 %.tex: %.xml
 	python3 tools/generate_tex.py $< $@
 
@@ -20,4 +23,4 @@ main.pdf: $(TEXS) $(EPSS) $(REQ_TEXS)
 
 clean:
 	latexmk -C
-	rm -rf *.pdf $(EPSS) $(REQ_TEXS)
+	rm -rf *.pdf $(EPSS) $(REQ_TEXS) $(shell cat .gitignore)

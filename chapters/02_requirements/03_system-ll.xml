@@ -20,7 +20,7 @@
 			measurements.
 		</description>
 		<parents>
-			<parent>Sys-HL-Req-2</parent>
+			<parent>Sys-HL-REQ-2</parent>
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
 		<partition>NAV</partition>
@@ -324,7 +324,7 @@
 			\end{itemize}
 		</description>
 		<parents>
-			<parent>Sys-HL-Req-8</parent>
+			<parent>Sys-HL-REQ-8</parent>
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
 		<partition>FCPS</partition>
@@ -360,7 +360,7 @@
 			and then forwards the next waypoint.
 		</description>
 		<parents>
-			<parent>Sys-HL-Req-8</parent>
+			<parent>Sys-HL-REQ-8</parent>
 			<parent>Sys-HL-DD-1</parent>
 		</parents>
 		<partition>FCPS</partition>
