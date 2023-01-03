@@ -79,8 +79,8 @@
 	<requirement id="7">
 		<title>Position control</title>
 		<description>
-			The plane shall be able to find a path to a position such that the distance between the
-			estimated position and the desired position is less than $\SI{1}{\meter}$.
+			The plane shall be able to fly a path to a position such that the distance between the
+			estimated position and the desired position becomes less than $\SI{1}{\meter}$ TODO TIME.
 		</description>
 		<parents>
 			<parent>Prod-REQ-2</parent>
@@ -107,7 +107,7 @@
 		<title>Altitude control</title>
 		<description>
 			The plane shall be able to control the current altitude over ground such the error
-			between estimated and desired altitude is less than $\SI{0.5}{\meter}$.
+			between estimated and desired altitude is less than $\SI{0.5}{\meter}$ TODO TIME.
 		</description>
 		<parents>
 			<parent>Prod-REQ-2</parent>
@@ -148,7 +148,10 @@
 	</requirement>
 	<requirement id="11">
 		<title>Debug Channel</title>
-		<description>The airplane can transmit data while loitering at the launch site.</description>
+		<description>
+			The airplane can transmit data if closer than $\SI{200}{\meter}$ to
+			the launch site.
+		</description>
 		<parents>
 			<parent>Prod-REQ-6</parent>
 		</parents>
@@ -156,7 +159,9 @@
 	</requirement>
 	<requirement id="12">
 		<title>Debug Display</title>
-		<description>Debug information transmitted by the plane can be displayed to the user.</description>
+		<description>
+			Debug information transmitted by the plane can be displayed to the user.
+		</description>
 		<parents>
 			<parent>Prod-REQ-6</parent>
 		</parents>
@@ -170,8 +175,7 @@
 				\item Mechanical: 
 				\begin{itemize} 
 					\item Airframe (AF) 
-					\item Surfaces Actuators (SA) 
-					\item Electric Powertrain (PW) 
+					\item Actuators (AC) 
 				\end{itemize} 
 				\item Electronical: 
 				\begin{itemize} 

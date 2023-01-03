@@ -12,7 +12,7 @@
 		<title>Climbing</title>
 		<description>
 			The airplane shall climb to a predefined altitude (tolerance $\pm\SI{5}{\meter}$) 
-			and predefined velocity (tolerance $\pm 25\%$)
+			and predefined velocity (tolerance $\pm 20\%$)
 			after launch and circle the launch site at this altitude (radius tolerance $\pm\SI{3}{\meter}$).
 		</description>
 		<parents></parents>
@@ -32,9 +32,8 @@
 	<requirement id="4">
 		<title>Landing</title>
 		<description>
-			The airplane shall be able to land at a predefined landing position with an accuracy of 
-			$\pm\SI{2}{\meter}$ orthogonal to the landing direction and $\pm\SI{10}{\meter}$ in the landing
-			direction.
+			The airplane shall be able to land at a predefined landing zone with a length of at least
+			$\SI{20}{\meter}$ and a width of at least $\SI{4}{\meter}$.
 		</description>
 		<parents></parents>
 		<partition></partition>

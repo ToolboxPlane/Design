@@ -20,8 +20,7 @@ digraph {
    }
 
    AF;
-   SA;
-   PW;
+   AC;
    RX;
    TX;
 
@@ -42,26 +41,22 @@ digraph {
    ]
 
    TX -> RX [
-      label = "Servo,\nMotor Setpoint"
+      label = "Override\nActuator Command"
    ];
 
    RX -> FCS [
-      label = "Servo,\nMotor Setpoint"
+      label = "Override\nActuator Command"
    ];
 
-   FCS -> SA [
-      label = "Servo Command"
+   FCS -> AC [
+      label = "Actuator Command"
    ]
 
-   FCS -> PW [
-      label = "Motor Command"
-   ]
-
-   SA -> AF [
+   AC -> AF [
       label = "Elevon Deflection"
    ]
 
-   PW -> AF [
+   AC -> AF [
       label = "Thrust"
    ]
 
