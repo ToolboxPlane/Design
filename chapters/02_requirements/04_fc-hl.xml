@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<module title="FC High-Level" id="FC-HL">
+    <requirement id="1">
+        <title>IMU</title>
+        <description>
+			The FC shall be equipped with an IMU.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-1</parent>
+        </parents>
+        <partition>FC</partition>
+    </requirement>
+    <requirement id="2">
+        <title>FC-FCP Interface</title>
+        <description>
+			The FC shall be equipped with an interface
+			to send and receive data to the FCP
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-47</parent>
+        </parents>
+        <partition>FC</partition>
+    </requirement>
+    <requirement id="3">
+        <title>Servo and Motor Interface</title>
+        <description>
+			The FC shall be equipped with an interface
+			to send commands to the CS and EP
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-53</parent>
+        </parents>
+        <partition>FC</partition>
+    </requirement>
+    <requirement id="4">
+        <title>FC-RX Interface</title>
+        <description>
+			The FC shall be able to receive commands 
+			from the RX.
+		</description>
+        <parents>
+            <parent>Sys-LL-REQ-43</parent>
+        </parents>
+        <partition>FC</partition>
+    </requirement>
+</module>

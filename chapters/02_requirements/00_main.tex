@@ -2,15 +2,22 @@
 This chapter shall capture all requirements posed to the
 system by this task and refine them to use as a basis for
 both implementation and verification.
+
 The refinement consists of multiple levels:
-firstly the product requirements capture the which are directly
-derived from the task. The System High-Level requirements
-decompose the individual requirements into verifiable
-requirements. The System Low-Level requirements refine the 
-High-Level requirements to allocate them exclusively to one
-component. The System Low-Level requirements for a component
-are then used to capture the High-Level requirements for the respective
-component. The complete requirements hierarchy is depicted
+\begin{itemize}
+    \item The operational requirements (OP) capture all requirements directly necessary for airplane operation.
+    \item The plane high-level (P-HL) requirements decompose the operational requirements into testable requirements
+        and extend them by design-decision relevant to the implementation of the complete plane.
+    \item The plane low-level (P-LL) requirements further decompose the plane high-level requirements and allocate them to
+        specific systems.
+    \item The system-specific high-level requirements consist of the plane low-level requirements allocated to this system
+        and system-specific design decisions.
+    \item The system-specific low-level requirements refine the high-level requirements and allocate them to specific
+        sub-systems/modules.
+    \item The sub-system-specific implementation requirements refine the system-specific low-level requirements and
+        use them as a basis for implementation and unit testing.
+\end{itemize}
+The complete requirements hierarchy is depicted
 in Figure \ref{fig:reqStructure}.
 
 \begin{figure}[H]
@@ -22,6 +29,8 @@ in Figure \ref{fig:reqStructure}.
 
 \newpage
 
-\input{chapters/02_requirements/01_product.tex}
-\input{chapters/02_requirements/02_system-hl.tex}
-\input{chapters/02_requirements/03_system-ll.tex}
+\input{chapters/02_requirements/01_operational.tex}
+\input{chapters/02_requirements/02_plane-hl.tex}
+\input{chapters/02_requirements/03_plane-ll.tex}
+\input{chapters/02_requirements/04_fcs-hl.tex}
+\input{chapters/02_requirements/05_fcs-ll.tex}

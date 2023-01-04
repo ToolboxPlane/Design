@@ -28,6 +28,7 @@ def main():
             id = f"{module_id}-REQ-{id}"
             
             partition = req.find("partition")
+            print(id)
             assert partition is not None
             partition = partition.text
 

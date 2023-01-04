@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<module title="Product" id="Prod">
+<module title="Operational" id="OP">
 	<requirement id="1">
 		<title>Take-Off</title>
 		<description>
