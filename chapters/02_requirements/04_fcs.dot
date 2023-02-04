@@ -1,70 +1,70 @@
 digraph {
-    rankdir = "LR";
+    rankdir = "BT";
+    bgcolor = "#E64F2D";
 
     subgraph clusterHAL {
+        bgcolor="white";
         label="HAL"
         UART0;
         UART1;
         UART2;
+        PWM16BIT;
+        TIMER8BIT;
     }
 
     subgraph clusterDrivers {
+        bgcolor="white";
         label="Drivers"
         BNO055UART [label = "BNO055-UART";];
         BNO055;
         UART_RX_BUFFER0 [label="UART Buffer"]
         UART_RX_BUFFER2 [label="UART Buffer"]
 
-        BNO055 ->BNO055UART;
-        BNO055UART -> BNO055;
+        BNO055UART ->BNO055 [dir = "both"];
         
         UART_RX_BUFFER2 -> SBUS;
-        UART_RX_BUFFER0 -> PROTOBUF;
-        PROTOBUF -> UART_RX_BUFFER0;
+        UART_RX_BUFFER0 -> PROTOBUF [dir = "both"];
+        PPM;
     }
 
     subgraph clusterComponents {
+        bgcolor="white";
         label="Components"
         IMU;    
         REMOTE;
         FLIGHTCOMPUTER;
+        ACTUATORS;
+        SYSTEM;
     }
 
     subgraph clusterApplication {
+        bgcolor="white";
         label="Application"
-        CONTROLLER;
         APPLICATION;
+        CONTROLLER;
         MODE_HANDLER;
         ERROR_HANDLER;
     }
 
-    UART1 -> BNO055UART;
-    BNO055UART -> UART1;
-
+    UART1 -> BNO055UART [dir = "both" ];
     UART2 -> UART_RX_BUFFER2;
+    UART0 -> UART_RX_BUFFER0 [dir = "both"];
+    PWM16BIT -> PPM [dir = "back"]
 
-    UART0 -> UART_RX_BUFFER0;
-    UART_RX_BUFFER0 -> UART0;
-
-    BNO055 -> IMU;
-    IMU -> BNO055;
-
+    BNO055 -> IMU [dir = "both"];
     SBUS -> REMOTE;
-    PROTOBUF -> FLIGHTCOMPUTER;
-    FLIGHTCOMPUTER -> PROTOBUF;
+    PROTOBUF -> FLIGHTCOMPUTER [ dir = "both" ];
+    PPM -> ACTUATORS [ dir="back" ];
+    TIMER8BIT -> SYSTEM [ dir="both" ];
 
-    IMU -> APPLICATION;
-    APPLICATION -> IMU;
+    IMU -> MODE_HANDLER[ dir = "both" ];
+    REMOTE -> MODE_HANDLER;
+    FLIGHTCOMPUTER -> MODE_HANDLER [ dir = "both" ];
 
-    REMOTE -> APPLICATION;
+    ACTUATORS -> APPLICATION [ dir = "back"]
+    MODE_HANDLER -> APPLICATION [ dir = "both" ];
+    SYSTEM -> APPLICATION;
 
-    FLIGHTCOMPUTER -> APPLICATION;
-    APPLICATION -> FLIGHTCOMPUTER;
-
-    APPLICATION -> CONTROLLER;
-    CONTROLLER -> APPLICATION;
-
-    APPLICATION -> MODE_HANDLER;
-    MODE_HANDLER -> APPLICATION;
+    APPLICATION -> CONTROLLER [ dir = "both" ];
     APPLICATION -> ERROR_HANDLER;
 }

@@ -117,10 +117,10 @@
         <partition>FCS</partition>
     </requirement>
     <design-decision id="1">
-        <title>ArchitectureS</title>
+        <title>Architecture</title>
         <description>
             The FCS is structure into an architecture consisting of four layers with increasing abstraction
-            and application-specificity each layer consists of independent modules, each module is responsible for
+            and application-specificity. Each layer consists of independent modules, each module is responsible for
             exactly one system the FCS interfaces with. 
             
             The layers and modules are:
@@ -128,7 +128,8 @@
                 \item Hardware-Abstraction-Layer (HAL):
                     \begin{itemize}
                         \item UART: Handles the configuration of the uart interface for the connection to the IMU, RX and FCP
-                        \item Pwm16Bit: Handles the configuration of the physical interface for sending commands to the AC
+                        \item Pwm16Bit: Handles the configuration of the physical interface for generating Pulse-Width-Modulates Signals 
+                            for the AC
                         \item Timer8Bit: Handles the configuration of the timer for all functionallity with timing requirements
                     \end{itemize}
                 \item Drivers
@@ -136,13 +137,13 @@
                         \item Bno055-UART: Uses the UART Module to handle the read/write commands to the IMU
                         \item Bno055: Uses the Bno055-UART Module to provide functionallity to read sensor values and configure the sensor
                         \item SBus: Uses the UART Module to decode the packages sent by the RX
-                        \item Protobuf: Uses the UART Module to send and receive packages to the FCP
-                        \item PPM: Uses the Pwm16Bit Module to send commands to the AC
+                        \item Protobuf: Uses the UART Module to decode and encode packages to the FCP
+                        \item PPM: Uses the Pwm16Bit Module to generate Pulse-Position-Modulated Signals for the AC
                     \end{itemize}
                 \item Components
                     \begin{itemize}
                         \item IMU: Uses the Bno055 Module to configure the sensor for the application and read the required sensor data
-                        \item Remote: Uses the SBus Module to decode the commands sent by the TX
+                        \item Remote: Uses the SBus Module to decode the inputs and switches sent by the TX
                         \item Flightcomputer: Uses the Protobuf Module to send and receive data from the FCPS
                         \item Actuators: Uses the PPM Module to send commands to the AC
                         \item System: Uses the Timer8bit Module and configures the MCU for the application
@@ -166,7 +167,45 @@
             \end{figure}
         </description>
         <reason>
-            TODO
+            This layered architecture allows for simple, testable and reusable modules on all layers.
+            In addition the application is independent of the physical interfaces and communication strategy,
+            such that the application logic can be easily implemented and components can be easily replaced.
+        </reason>
+    </design-decision>
+    <design-decision id="2">
+        <title>Fault Detection</title>
+        <description>
+            The following fault conditions shall be detected:
+            \begin{itemize}
+                \item Faults reported by the IMU (Self test at startup and status during operation)
+                \item Faults reported by the MCU (Brownout)
+                \item Violation of the timing constraints (Application Loop Runtime, Watchdog Timer reset)
+                \item No data from the IMU for $\SI{100}{\milli\second}$
+                \item No data from the flight-computer for $\SI{200}{\milli\second}$
+                \item No data from the remote for $\SI{100}{\milli\second}$
+                \item Overflow of the Remote or FCP Receive-Buffers due to invalid message size
+            \end{itemize}
+            and signalled to the error-handler component.
+        </description>
+        <reason>
+            The detection of faults allows to adapt the mission as early as possible, avoiding that faults
+            turn into failures of the airplane.
+        </reason>
+    </design-decision>
+    <design-decision id="3">
+        <title>Fault Handling</title>
+        <description>
+            The following fault conditions shall be handled automatically:
+            \begin{itemize}
+                \item No data from the IMU for $\SI{100}{\milli\second}$: use remote as fallback
+                \item No data from the flight-computer for $\SI{200}{\milli\second}$: use remote as fallback
+                \item No data from the remote for $\SI{100}{\milli\second}$: do stabilised emergency runtime
+                \item Overflow of the Remote or FCP Receive-Buffers: disable the respective receive interrupt
+            \end{itemize}
+            and signalled to the error-handler component.
+        </description>
+        <reason>
+            Detectable failures which can be handled automatically should be handled automatically by the FCS.
         </reason>
     </design-decision>
 </module>

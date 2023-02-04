@@ -1,3 +1,5 @@
+\definecolor{tb-orange}{RGB}{230, 79, 45}
+
 % Command to generate a new subsubsection for a requirement.
 % The name is of the form [group]_REQ_[num], where group
 % can be set via a call to \group.
@@ -7,8 +9,8 @@
 %   - Description: The full description of the requirement
 %   - Parent requirements: Links to the parent requirements
 %   - Partition: Partitioning of this requirement, ignored if empty
-\newcommand{\req}[5]{
-    \begin{mdframed}[backgroundcolor=teal!30, linecolor=teal]
+\newcommand{\req}[6]{
+    \begin{mdframed}[backgroundcolor=tb-orange, linecolor=black]
             \subsection*{#1: #2} \label{#1}
             \paragraph{Description:}
             #3
@@ -20,16 +22,19 @@
                 \paragraph{Partition:}
                 #5
             }
+
+            \paragraph{Implemented by:}
+            #6
     \end{mdframed}
 
     \vspace{.5cm}
     
 }
 
-% Command to link to a parent requirement
+% Command to link to another requirement
 % Arguments:
-%   - ID: ID of the parent requirement.
-\newcommand{\parent}[1]{\hyperref[#1]{#1}}
+%   - ID: ID of the requirement.
+\newcommand{\link}[1]{\hyperref[#1]{#1}}
 
 % Command to generate a new subsubsection for a design decision.
 % The name is of the form [group]_DD_[num], where group
@@ -39,14 +44,17 @@
 %   - Title: The short description of the requirement
 %   - Description: The full description of the requirement
 %   - Reasoning: Reason for the choice of design decision.
-\newcommand{\dd}[4]{
-    \begin{mdframed}[backgroundcolor=teal!30, linecolor=teal]
+\newcommand{\dd}[5]{
+    \begin{mdframed}[backgroundcolor=tb-orange, linecolor=black]
         \subsection*{#1: #2} \label{#1}
         \paragraph{Description:}
         #3
 
         \paragraph{Reasoning:}
         #4
+
+        \paragraph{Implemented by:}
+        #5
     \end{mdframed}
 
     \vspace{.5cm}

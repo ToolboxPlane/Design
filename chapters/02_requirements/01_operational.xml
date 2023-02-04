@@ -3,7 +3,7 @@
 	<requirement id="1">
 		<title>Take-Off</title>
 		<description>
-			The airplane shall be launched by a single person by throwing the plane.
+			The airplane MUST be able to be launched by a single person by throwing the plane.
 		</description>
 		<parents></parents>
 		<partition></partition>
@@ -11,9 +11,9 @@
 	<requirement id="2">
 		<title>Climbing</title>
 		<description>
-			The airplane shall climb to a predefined altitude (tolerance $\pm\SI{5}{\meter}$) 
-			and predefined velocity (tolerance $\pm 20\%$)
-			after launch and circle the launch site at this altitude (radius tolerance $\pm\SI{3}{\meter}$).
+			The airplane MUST climb to a altitude of $\SI{50 \pm 5}{\meter}$
+			above ground after launch and circle the launch site at this altitude with a radius of
+			$\SI{30 \pm 10}{\meter}$.
 		</description>
 		<parents></parents>
 		<partition></partition>
@@ -21,9 +21,9 @@
 	<requirement id="3">
 		<title>Mission</title>
 		<description>
-			The airplane shall be able to follow a predefined set of waypoints, 
-			consisting of latitude, longitude and altitude. Each waypoint should be traversed
-			with a tolerance of $\pm\SI{2}{\meter}$ horizontally and $\SI{5}{\meter}$ vertically
+			The airplane MUST follow a predefined set of waypoints, 
+			consisting of latitude, longitude and altitude. Each waypoint MUST be traversed
+			with a tolerance of $\pm\SI{5}{\meter}$ both horizontally and vertically
 			at a predefined velocity (tolerance $\pm 25\%$).
 		</description>
 		<parents></parents>
@@ -32,8 +32,8 @@
 	<requirement id="4">
 		<title>Landing</title>
 		<description>
-			The airplane shall be able to land at a predefined landing zone with a length of at least
-			$\SI{20}{\meter}$ and a width of at least $\SI{4}{\meter}$.
+			The airplane MUST be able to land at a predefined landing zone with a length of at least
+			$\SI{50}{\meter}$ and a width of at least $\SI{4}{\meter}$.
 		</description>
 		<parents></parents>
 		<partition></partition>
@@ -41,7 +41,7 @@
 	<requirement id="5">
 		<title>Range</title>
 		<description>
-			The airplane minimum range of the aircraft shall be 100km
+			The minimum range of the aircraft MUST be 100km.
 		</description>
 		<parents></parents>
 		<partition></partition>
@@ -49,7 +49,7 @@
 	<requirement id="6">
 		<title>Error Handling</title>
 		<description>
-			The airplane shall provide all information required for finding errors, both on the ground and when loitering.
+			The airplane MUST provide flight information when on the ground and during loitering.
 		</description>
 		<parents></parents>
 		<partition></partition>

@@ -1,7 +1,10 @@
 *.4ct
 *.4tc
-*.css
 *.aux
+*.bbl
+*.bcf
+*.blg
+*.css
 *.dvi
 *.eps
 *.fdb_latexmk
@@ -14,6 +17,7 @@
 *.out.ps
 *.pdf
 *.ps
+*.run.xml
 *.synctex*
 *.tmp 
 *.toc

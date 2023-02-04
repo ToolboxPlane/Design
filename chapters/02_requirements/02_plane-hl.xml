@@ -3,7 +3,7 @@
 	<requirement id="1">
 		<title>Launch detection</title>
 		<description>
-			The plane shall signal a launch if the acceleration is larger than \SI{6}{\meter \per \second^2}.
+			The plane MUST signal a launch if the acceleration is larger than \SI{6}{\meter \per \second^2}.
 		</description>
 		<parents>
 			<parent>OP-REQ-1</parent>
@@ -13,7 +13,7 @@
 	<requirement id="2">
 		<title>Velocity estimation</title>
 		<description>
-			The plane shall estimate the current velocity with a relative error of less than $10\%$.
+			The plane MUST estimate the current velocity with a relative error of less than $10\%$.
 		</description>
 		<parents>
 			<parent>OP-REQ-1</parent>
@@ -26,7 +26,7 @@
 	<requirement id="3">
 		<title>Velocity control</title>
 		<description>
-			The plane shall be able to control the velocity such that the relative error
+			The plane MUST control the velocity such that the relative error
 			between estimated velocity and desired velociy is less than $10\%$ after $\SI{10}{\second}$.
 		</description>
 		<parents>
@@ -38,9 +38,9 @@
 		<partition></partition>
 	</requirement>
 	<requirement id="4">
-		<title>Attitude estimation</title>
+		<title>Orientation estimation</title>
 		<description>
-			The plane shall be able to estimate the current attitude with an error of less than $\SI{5}{\degree}$.
+			The plane MUST estimate the current orientation with an error of less than $\SI{5}{\degree}$ on each axis.
 		</description>
 		<parents>
 			<parent>OP-REQ-1</parent>
@@ -51,10 +51,10 @@
 		<partition></partition>
 	</requirement>
 	<requirement id="5">
-		<title>Attitude control</title>
+		<title>Orientation control</title>
 		<description>
-			The plane shall be able to control the attitude such that the error between estimated attitude
-			and actual attitude is less than $\SI{10}{\degree}$ after $\SI{10}{\second}$.
+			The plane MUST control the orientation such that the error between estimated orientation 
+			and desired orientation is less than $\SI{10}{\degree}$ after $\SI{10}{\second}$.
 		</description>
 		<parents>
 			<parent>OP-REQ-1</parent>
@@ -67,7 +67,7 @@
 	<requirement id="6">
 		<title>Position estimation</title>
 		<description>
-			The plane shall be able to estimate the current position with an accuracy of $\pm \SI{1}{\meter}$.
+			The plane MUST estimate the current position with an accuracy of $\pm \SI{1}{\meter}$.
 		</description>
 		<parents>
 			<parent>OP-REQ-2</parent>
@@ -79,7 +79,7 @@
 	<requirement id="7">
 		<title>Position control</title>
 		<description>
-			The plane shall be able to fly a path to a position such that the distance between the
+			The plane MUST be able to fly a path to a position such that the distance between the
 			estimated position and the desired position becomes less than $\SI{1}{\meter}$ TODO TIME.
 		</description>
 		<parents>
@@ -92,7 +92,7 @@
 	<requirement id="13">
 		<title>Altitude estimation</title>
 		<description>
-			The plane shall be able to estimate the current altitude over ground with an error
+			The MUST estimate the current altitude over ground with an error
 			of less than $\SI{0.2}{\meter}$ while lower than $\SI{20}{\meter}$ and
 			less than $\SI{2}{\meter}$ while higher thant $\SI{20}{\meter}$ above ground.
 		</description>
@@ -106,7 +106,7 @@
 	<requirement id="14">
 		<title>Altitude control</title>
 		<description>
-			The plane shall be able to control the current altitude over ground such the error
+			The plane MUST control the altitude over ground such the error
 			between estimated and desired altitude is less than $\SI{0.5}{\meter}$ TODO TIME.
 		</description>
 		<parents>
@@ -119,7 +119,7 @@
 	<requirement id="8">
 		<title>Mission Execution</title>
 		<description>
-			The airplane shall be able to fly a mission consisting of the following states:
+			The airplane MUST fly a mission consisting of the following states:
 			\begin{enumerate}
 				\item Pre-Takeoff
 				\item Launch
@@ -140,7 +140,7 @@
 	</requirement>
 	<requirement id="9">
 		<title>Energy Storage</title>
-		<description>The airplane has sufficient energy to complete the required distance of 100km.</description>
+		<description>The airplane MUST have sufficient energy to complete a distance of 100km.</description>
 		<parents>
 			<parent>OP-REQ-5</parent>
 		</parents>
@@ -149,7 +149,7 @@
 	<requirement id="11">
 		<title>Debug Channel</title>
 		<description>
-			The airplane can transmit data if closer than $\SI{200}{\meter}$ to
+			The airplane MUST transmit data if closer than $\SI{200}{\meter}$ to
 			the launch site.
 		</description>
 		<parents>
@@ -160,7 +160,7 @@
 	<requirement id="12">
 		<title>Debug Display</title>
 		<description>
-			Debug information transmitted by the plane can be displayed to the user.
+			Debug information transmitted by the plane MUST be displayed to the user.
 		</description>
 		<parents>
 			<parent>OP-REQ-6</parent>

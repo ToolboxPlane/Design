@@ -13,7 +13,7 @@ main.html: $(TEXS) $(EPSS) $(REQ_TEXS)
 	htlatex main.tex	
 
 %.tex: %.xml
-	python3 tools/generate_tex.py $< $@
+	python3 tools/generate_tex.py $< $@ $(REQ_XMLS)
 
 %.eps: %.svg
 	inkscape $< --export-eps $@ --export-ignore-filters --export-ps-level=3

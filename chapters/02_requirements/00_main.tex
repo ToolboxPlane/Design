@@ -6,19 +6,22 @@ both implementation and verification.
 The refinement consists of multiple levels:
 \begin{itemize}
     \item The operational requirements (OP) capture all requirements directly necessary for airplane operation.
+        The verification of the OP requirements is done during mission execution.
     \item The plane high-level (P-HL) requirements decompose the operational requirements into testable requirements
         and extend them by design-decision relevant to the implementation of the complete plane.
+        The verification of the P-HL requirements is done using flight tests.
     \item The plane low-level (P-LL) requirements further decompose the plane high-level requirements and allocate them to
         specific systems.
+        The verification of the P-LL requirements is done via the verification of the system specific HL requirements.
     \item The system-specific high-level requirements consist of the plane low-level requirements allocated to this system
         and system-specific design decisions.
-    \item The system-specific low-level requirements refine the high-level requirements and allocate them to specific
-        sub-systems/modules.
-    \item The sub-system-specific implementation requirements refine the system-specific low-level requirements and
-        use them as a basis for implementation and unit testing.
+        The verification of the system-specific high-level requirements is done via integration tests of the system.
+    \item The system-specific low-level requirements refine the system-specific high-level requirements 
+        for implementation. 
+        The verification of the implementation requirements is done using unit tests.
 \end{itemize}
-The complete requirements hierarchy is depicted
-in Figure \ref{fig:reqStructure}.
+
+An exemplary overview of the structure is given in Figure \ref{fig:reqStructure}.
 
 \begin{figure}[H]
     \centering
@@ -27,10 +30,13 @@ in Figure \ref{fig:reqStructure}.
     \label{fig:reqStructure}
 \end{figure}
 
+Requirements are formulated using the wording defined in \cite{rfc2119}, with keywords in all UPPERCASE.
+
 \newpage
 
 \input{chapters/02_requirements/01_operational.tex}
 \input{chapters/02_requirements/02_plane-hl.tex}
 \input{chapters/02_requirements/03_plane-ll.tex}
 \input{chapters/02_requirements/04_fcs-hl.tex}
-\input{chapters/02_requirements/05_fcs-ll.tex}
+\section{Flight-Controller-Software Low Level}
+See the Flight-Controller-Software Documentation.

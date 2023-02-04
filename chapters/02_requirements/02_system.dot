@@ -1,28 +1,51 @@
 digraph {
+   rankdir = "BT";
+   bgcolor = "#E64F2D";
+
    subgraph clusterFCP {
       label="FCP"
+      bgcolor="white";
       FCPS
    }
 
    subgraph clusterFC {
       label="FC"
+      bgcolor="white";
       FCS;
    }
 
    subgraph clusterNAV {
       label="NAV"
+      bgcolor="white";
       NAVS;    
    }
 
    subgraph clusterPDB {
       label="PDB"
-      PDBS
+      bgcolor="white";
+      PDBS;
    }
 
-   AF;
-   AC;
-   RX;
-   TX;
+   AF [
+      style="filled"; 
+      color ="white";
+   ];
+   AC [
+      style="filled"; 
+      color="white";
+   ]
+   RX [
+      style="filled"; 
+      color="white";
+   ]
+   TX [
+      style="filled"; 
+      color="white";
+   ]
+   DDS [
+      style="filled"; 
+      color="white";
+   ]
 
    FCS -> FCPS [
       label = "IMU"
@@ -53,7 +76,7 @@ digraph {
    ]
 
    AC -> AF [
-      label = "Elevon Deflection"
+      label = "ElevonDeflection"
    ]
 
    AC -> AF [

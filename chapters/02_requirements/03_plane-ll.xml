@@ -4,7 +4,7 @@
 	<requirement id="1">
 		<title>IMU</title>
 		<description>
-			The FC shall be equipped with an IMU.
+			The FC MUST be equipped a sensor for measuring the orientation.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-1</parent>
@@ -16,8 +16,7 @@
 	<requirement id="7">
 		<title>Pitot-Sensor</title>
 		<description>
-			The NAV shall be equipped with a Pitot tube based sensor for airspeed 
-			measurements.
+			The NAV MUST be equipped with a sensor for measuring airspeed.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-2</parent>
@@ -28,7 +27,7 @@
 	<requirement id="20">
 		<title>GPS Sensor</title>
 		<description>
-			The FCP shall be equipped with a GPS sensor.
+			The FCP MUST be equipped with a sensor for measuring positions.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-6</parent>
@@ -39,7 +38,7 @@
 	<requirement id="31">
 		<title>Barometer</title>
 		<description>
-			The NAV shall be equipped with a barometric altimeter.
+			The NAV MUST be equipped with a sensor for measuring absolute altitude.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-13</parent>
@@ -50,8 +49,7 @@
 	<requirement id="35">
 		<title>LIDAR</title>
 		<description>
-			The NAV shall be equipped with LIDAR for altitude 
-			measurements.
+			The NAV MUST be equipped with a sensor for measuring relative altitude above ground.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-13</parent>
@@ -62,7 +60,7 @@
 	<requirement id="54">
 		<title>Voltage and Current Sensor</title>
 		<description>
-			The PDB shall be able to measure the following physical quantities:
+			The PDB MUST be equipped with a sensor for the following quantitites:
 			\begin{itemize}
 				\item Battery Voltage
 				\item Battery Current
@@ -79,7 +77,7 @@
 	<requirement id="37">
 		<title>Cellular Module</title>
 		<description>
-			The FCP shall be equipped with a transceiver for cellular communication.
+			The FCP MUST be equipped with a transmitter for transmitting debug data.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-11</parent>
@@ -90,7 +88,7 @@
 	<requirement id="29">
 		<title>Energy Storage</title>
 		<description>
-			The AC shall provide sufficient energy for $\SI{2}{\hour}$ at $\SI{15}{\meter \per \second}$.
+			The AC MUST provide sufficient energy for $\SI{2}{\hour}$ at $\SI{15}{\meter \per \second}$.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-9</parent>
@@ -99,14 +97,10 @@
 		<partition>AC</partition>
 	</requirement>
 	<requirement id="16">
-		<title>Motor Characterization</title>
+		<title>Thrust</title>
 		<description>
-			The AC shall react to motor commands with a deterministic thrust, 
-			only influenced by the command, 
-			the load of the motor and the battery voltage. 
-			The influence of all other factors should be less than 
-			$10\%$ under normal operating conditions. 
-			TODO what are those?
+			The AC MUST provide sufficient thrust to achieve a velocity of $\SI{15}{\meter \per second}$
+			during flight.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-3</parent>
@@ -117,8 +111,7 @@
 	<requirement id="19">
 		<title>Elevon Actuator Performance</title>
 		<description>
-			The AC shall set the position of the control surfaces in 
-			accordance with the received command TODO performance.
+			The AC MUST set the position of the control surfaces every $\SI{20}{\milli \second}$.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-5</parent>
@@ -130,7 +123,7 @@
 	<requirement id="58">
 		<title>Control Surfaces</title>
 		<description>
-			The AF shall be equipped with two elevons which allow for
+			The AF MUST be equipped with two elevons which allow for
 			control of both the roll and pitch axis.
 		</description>
 		<parents>
@@ -145,7 +138,7 @@
 	<requirement id="59">
 		<title>Lift</title>
 		<description>
-			The AF shall provide lift to carry a total system weight of $\SI{2.5}{\kg}$ at
+			The AF MUST provide lift to carry a total system weight of $\SI{2.5}{\kg}$ at
 			$\SI{15}{\meter \per \second}$
 		</description>
 		<parents>
@@ -160,7 +153,7 @@
 	<requirement id="60">
 		<title>Mounting</title>
 		<description>
-			The AF shall provide mounting places for the following
+			The AF MUST provide mounting places for the following
 			components:
 			\begin{itemize}
 				\item SA
@@ -181,7 +174,7 @@
 	<requirement id="2">
 		<title>IMU Measurements</title>
 		<description>
-			The FCS shall read measurement the following data
+			The FCS MUST read the following data
 			around all three axis
 			\begin{itemize}
 				\item Orientation angle
@@ -201,7 +194,7 @@
 	<requirement id="8">
 		<title>Airspeed Measurements</title>
 		<description>
-			The airspeed shall be measured by the NAVS every
+			The airspeed MUST be measured by the NAVS every
 			$\SI{100}{\milli \second}$.
 		</description>
 		<parents>
@@ -214,7 +207,7 @@
 	<requirement id="21">
 		<title>GPS Measurement</title>
 		<description>
-			The FCPS shall query the GPS sensor for new data every 
+			The FCPS MUST query the GPS sensor for new data every 
 			$\SI{100}{\milli\second}$.
 		</description>
 		<parents>
@@ -227,7 +220,7 @@
 	<requirement id="32">
 		<title>Barometer measurement</title>
 		<description>
-			The NAVS shall read the altimeter every 
+			The NAVS MUST read the altimeter every 
 			$\SI{100}{\milli\second}$.
 		</description>
 		<parents>
@@ -240,7 +233,7 @@
 	<requirement id="36">
 		<title>Lidar measurements</title>
 		<description>
-			The NAVS shall read the LIDAR every 
+			The NAVS MUST read the LIDAR every 
 			$\SI{100}{\milli\second}$.
 		</description>
 		<parents>
@@ -253,7 +246,7 @@
 	<requirement id="55">
 		<title>Voltage and Current Monitoring</title>
 		<description>
-			The PDBS shall measure the following physical quantities
+			The PDBS MUST measure the following physical quantities
 			\begin{itemize}
 				\item Battery Voltage
 				\item Battery Current
@@ -272,7 +265,7 @@
 	<requirement id="15">
 		<title>Motor Command Execution</title>
 		<description>
-			The AC shall react on every motor command in at most 
+			The AC MUST react on every motor command in at most 
 			$\SI{20}{\milli\second}$.
 		</description>
 		<parents>
@@ -287,7 +280,7 @@
 	<requirement id="5">
 		<title>State Estimation</title>
 		<description>
-			The FCPS shall filter the IMU and pitot data to guarantee 
+			The FCPS MUST filter the IMU and pitot data to guarantee 
 			\begin{itemize} 
 				\item an acceleration with $2 \sigma_a \le \SI{0.6}{\meter \per \second^2}$
 				\item the orientation with $2 \sigma_\text{orientation} \le \SI{5}{\degree}$
@@ -314,7 +307,7 @@
 	<requirement id="27">
 		<title>Reading Mission Configuration</title>
 		<description>
-			The FCPS shall read a list of waypoints and a target at startup. Both the waypoints and the target 
+			The FCPS MUST read a list of waypoints and a target at startup. Both the waypoints and the target 
 			consists of the following information: 
 			\begin{itemize} 
 				\item Latitude 
@@ -332,7 +325,7 @@
 	<requirement id="61">
 		<title>Mission State</title>
 		<description>
-			The FCPS shall call the correct mission subprogram
+			The FCPS MUST call the correct mission subprogram
 			and switch mission state depending on the output of this subprogram.
 		</description>
 		<parents>
@@ -343,7 +336,7 @@
 	<requirement id="6">
 		<title>Launch Detection</title>
 		<description>
-			The FCPS shall use the estimated state to signal a 
+			The FCPS MUST use the estimated state to signal a 
 			launch if the acceleration is larger than 
 			$\SI{6}{\meter \per \second}$.
 		</description>
@@ -357,7 +350,7 @@
 	<requirement id="28">
 		<title>Waypoint Handling</title>
 		<description>
-			The FCPS shall send the next waypoint as input to the position control and detect when a waypoint was hit 
+			The FCPS MUST send the next waypoint as input to the position control and detect when a waypoint was hit 
 			and then forwards the next waypoint.
 		</description>
 		<parents>
@@ -369,7 +362,7 @@
 	<requirement id="11">
 		<title>Velocity Controller</title>
 		<description>
-			The FCPS shall be able to find a motor command such that the relative error
+			The FCPS MUST be able to find a motor command such that the relative error
 			between estimated velocity and desired velociy is less than $10\%$ after $\SI{10}{\second}$.
 		</description>
 		<parents>
@@ -379,11 +372,11 @@
 		<partition>FCPS</partition>
 	</requirement>
 	<requirement id="17">
-		<title>Attitude Controller</title>
+		<title>Orientation Controller</title>
 		<description>
-			The FCS shall compute a actuator command every $\SI{20}{\milli \second}$, 
-			such that the error between estimated attitude
-			and actual attitude is less than $\SI{10}{\degree}$ after $\SI{10}{\second}$.
+			The FCS MUST compute a actuator command every $\SI{20}{\milli \second}$, 
+			such that the error between estimated orientation
+			and actual orientation is less than $\SI{10}{\degree}$ after $\SI{10}{\second}$.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-5</parent>
@@ -396,8 +389,8 @@
 	<requirement id="24">
 		<title>Position Controller</title>
 		<description>
-			The FCPS shall find a dynamically feasible trajectory of 
-			attitudes and velocities, such that the distance between the
+			The FCPS MUST find a dynamically feasible trajectory of 
+			orientation and velocities, such that the distance between the
 			estimated position and the desired position becomes 
 			less than $\SI{1}{\meter}$.
 		</description>
@@ -410,7 +403,7 @@
 	<requirement id="61">
 		<title>Altitude Controller</title>
 		<description>
-			The FCPS shall control the altitude such that
+			The FCPS MUST control the altitude such that
 			the error between estimated and desired altitude is less
 			than $\SI{0.5}{\meter}$.
 		</description>
@@ -423,7 +416,7 @@
 	<requirement id="30">
 		<title>Debug Data Collection</title>
 		<description>
-			The FCPS shall collect the following data: 
+			The FCPS MUST collect the following data: 
 			\begin{itemize} 
 				\item All data from the FCS 
 				\item All data from the PDBS 
@@ -441,7 +434,7 @@
 	<requirement id="40">
 		<title>Debug Display Visualization</title>
 		<description>
-			The DDS shall be able to visualize all debug data.
+			The DDS MUST be able to visualize all debug data.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-12</parent>
@@ -452,7 +445,7 @@
 	<requirement id="45">
 		<title>Override Command</title>
 		<description>
-			The FCS shall use the override information
+			The FCS MUST use the override information
 			as command if the override switch is activated.
 		</description>
 		<parents>
@@ -463,7 +456,7 @@
 	<requirement id="46">
 		<title>Arm Command</title>
 		<description>
-			The FCS shall always send the motor command 0
+			The FCS MUST always send the motor command 0
 			if the arm switch is not activated.
 		</description>
 		<parents>
@@ -476,7 +469,7 @@
 	<requirement id="47">
 		<title>FC-FCP Interface</title>
 		<description>
-			The FC shall be equipped with an interface
+			The FC MUST be equipped with an interface
 			to send and receive data to the FCP
 		</description>
 		<parents>
@@ -487,7 +480,7 @@
 	<requirement id="48">
 		<title>FCP-FC Interface</title>
 		<description>
-			The FCP shall be equipped with an interface
+			The FCP MUST be equipped with an interface
 			to send and receive data to the FC
 		</description>
 		<parents>
@@ -498,7 +491,7 @@
 	<requirement id="49">
 		<title>NAV-FCP Interface</title>
 		<description>
-			The NAV shall be equipped with an interface
+			The NAV MUST be equipped with an interface
 			to send data to the FCP
 		</description>
 		<parents>
@@ -509,7 +502,7 @@
 	<requirement id="50">
 		<title>FCP-NAV Interface</title>
 		<description>
-			The FCP shall be equipped with an interface
+			The FCP MUST be equipped with an interface
 			to receive data from the NAV
 		</description>
 		<parents>
@@ -520,7 +513,7 @@
 	<requirement id="51">
 		<title>PDB-FCP Interface</title>
 		<description>
-			The PDB shall be equipped with an interface
+			The PDB MUST be equipped with an interface
 			to send data to the FCP
 		</description>
 		<parents>
@@ -531,7 +524,7 @@
 	<requirement id="52">
 		<title>FCP-PDB Interface</title>
 		<description>
-			The FCP shall be equipped with an interface
+			The FCP MUST be equipped with an interface
 			to receive data from the PDB
 		</description>
 		<parents>
@@ -542,7 +535,7 @@
 	<requirement id="53">
 		<title>Servo and Motor Interface</title>
 		<description>
-			The FC shall be equipped with an interface
+			The FC MUST be equipped with an interface
 			to send commands to the CS and EP
 		</description>
 		<parents>
@@ -553,7 +546,7 @@
 	<requirement id="43">
 		<title>FC-RX Interface</title>
 		<description>
-			The FC shall be able to receive commands 
+			The FC MUST be able to receive commands 
 			from the RX.
 		</description>
 		<parents>
@@ -566,7 +559,7 @@
 	<requirement id="3">
 		<title>FCS data transmission</title>
 		<description>
-			The FCS shall transmit IMU data every $\SI{100}{\milli\second}$ 
+			The FCS MUST transmit IMU data every $\SI{100}{\milli\second}$ 
 			to the FCPS.
 		</description>
 		<parents>
@@ -580,7 +573,7 @@
 	<requirement id="4">
 		<title>FCS data reception</title>
 		<description>
-			The FCPS shall be able to receive FCS data every 
+			The FCPS MUST be able to receive FCS data every 
 			$\SI{100}{\milli\second}$.
 		</description>
 		<parents>
@@ -594,7 +587,7 @@
 	<requirement id="33">
 		<title>NAVS data transmission</title>
 		<description>
-			The NAVS shall transmit the following data
+			The NAVS MUST transmit the following data
 			\begin{itemize}	
 				\item Velocity
 				\item Barometric altitude
@@ -613,7 +606,7 @@
 	<requirement id="34">
 		<title>NAVS data reception</title>
 		<description>
-			The FCPS shall receive the NAVS data every 
+			The FCPS MUST receive the NAVS data every 
 			$\SI{100}{\milli\second}$.
 		</description>
 		<parents>
@@ -627,7 +620,7 @@
 	<requirement id="56">
 		<title>PDBS data transmission</title>
 		<description>
-			The PDBS shall transmit the measured data every $\SI{100}{\milli \second}$
+			The PDBS MUST transmit the measured data every $\SI{100}{\milli \second}$
 			to the FCPS.
 		</description>
 		<parents>
@@ -640,7 +633,7 @@
 	<requirement id="57">
 		<title>PDBS data reception</title>
 		<description>
-			The FCPS shall be able to receive PDB data every $\SI{100}{\milli \second}$
+			The FCPS MUST be able to receive PDB data every $\SI{100}{\milli \second}$
 			from the PDBS.
 		</description>
 		<parents>
@@ -653,7 +646,7 @@
 	<requirement id="42">
 		<title>RX reception</title>
 		<description>
-			The RX shall receive the information sent by the TX
+			The RX MUST receive the information sent by the TX
 			and forward it to the FCP.
 		</description>
 		<parents>
@@ -664,7 +657,7 @@
 	<requirement id="38">
 		<title>Debug Data Transmission</title>
 		<description>
-			The FCPS shall transmit the collected debug data every 
+			The FCPS MUST transmit the collected debug data every 
 			$\SI{100}{\milli \second}$ via the cellular connection.
 		</description>
 		<parents>
@@ -676,7 +669,7 @@
 	<requirement id="39">
 		<title>Debug Display Data Reception</title>
 		<description>
-			The DDS shall be able to receive the debug data every 
+			The DDS MUST be able to receive the debug data every 
 			$\SI{100}{\milli \second}$ via the cellular connection.
 		</description>
 		<parents>
@@ -688,7 +681,7 @@
 	<requirement id="13">
 		<title>Motor Setpoint Receive</title>
 		<description>
-			The FCS shall be able to receive a motor setpoint every 
+			The FCS MUST be able to receive a motor setpoint every 
 			$\SI{100}{\milli\second}$
 		</description>
 		<parents>
@@ -701,7 +694,7 @@
 	<requirement id="14">
 		<title>Motor Command</title>
 		<description>
-			The FCS shall transmit every motor setpoint as a command to 
+			The FCS MUST transmit every motor setpoint as a command to 
 			the AC at most $\SI{20}{\milli\second}$ after reception.
 		</description>
 		<parents>
@@ -714,7 +707,7 @@
 	<requirement id="25">
 		<title>Orientation Setpoint Transmission</title>
 		<description>
-			The FCPS shall transmit every $\SI{100}{\milli\second}$ the orientation and calculated by the 
+			The FCPS MUST transmit every $\SI{100}{\milli\second}$ the orientation and calculated by the 
 			position controller for the current timestep.
 		</description>
 		<parents>
@@ -726,7 +719,7 @@
 	<requirement id="26">
 		<title>Orientation Setpoint Reception</title>
 		<description>
-			The FCS shall receive the orientation setpoint from the FCPS every $\SI{100}{\milli\second}$.
+			The FCS MUST receive the orientation setpoint from the FCPS every $\SI{100}{\milli\second}$.
 		</description>
 		<parents>
 			<parent>P-HL-REQ-7</parent>
@@ -737,7 +730,7 @@
 	<requirement id="12">
 		<title>Motor Setpoint Transmission</title>
 		<description>
-			The FCPS shall transmit the calculated motor setpoint every 
+			The FCPS MUST transmit the calculated motor setpoint every 
 			$\SI{100}{\milli\second}$
 		</description>
 		<parents>
@@ -750,7 +743,7 @@
 	<requirement id="18">
 		<title>Servo Command Transmission</title>
 		<description>
-			The FCS shall transmit the computed servo command every 
+			The FCS MUST transmit the computed servo command every 
 			$\SI{20}{\milli\second}$.
 		</description>
 		<parents>
@@ -764,7 +757,7 @@
 	<requirement id="41">
 		<title>TX command transmission</title>
 		<description>
-			The TX shall transmit the following information:
+			The TX MUST transmit the following information:
 			\begin{itemize}
 				\item Motor arm switch position
 				\item Manual override switch position
@@ -780,7 +773,7 @@
 	<requirement id="44">
 		<title>Override reception</title>
 		<description>
-			The FCS shall be able to receive
+			The FCS MUST be able to receive
 			the override information from the RX.
 		</description>
 		<parents>

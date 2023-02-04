@@ -1,54 +1,41 @@
 digraph {
-    rankdir = "LR";
-    Prod [
-        label = "Product";
+    rankdir = "TB";
+    OP [
+        label = "Operational";
     ]
 
-    SysHL [
-        label = "System HL";
+    PlaneHL [
+        label = "Plane HL";
     ]
 
-    SysLL [
-        label = "System LL";
+    PlaneLL [
+        label = "Plane LL";
     ]
 
-    EpHL [
-        label = "Electric Powertrain HL";
+
+    Other0HL [
+        label = "...";
     ]
-    CsHL [
-        label = "Control Surfaces HL";
+    Other1HL [
+        label = "...";
     ]
-    FcHL [
-        label = "Flight Controller HL";
-    ]
+
     FcsHL [
-        label = "Flight Controller Software HL";
+        label = "Flight-Controller-Software HL";
     ]
-    FcpHL [
-        label = "Flight Computer HL";
-    ]
-    FcpsHL [
-        label = "Flight Computer Software HL";
-    ]
-
-    NavHL [
-        label = "Navigation HL";
-    ]
-
-    NavsHL [
-        label = "Navigation Software HL";
+    FcsLL [
+        label = "Flight-Controller-Software LL";
     ]
 
 
-    Prod -> SysHL;
-    SysHL -> SysLL;
 
-    SysLL -> EpHL;
-    SysLL -> CsHL;
-    SysLL -> FcHL;
-    SysLL -> FcsHL;
-    SysLL -> FcpHL;
-    SysLL -> FcpsHL;
-    SysLL -> NavHL
-    SysLL -> NavsHL
+    OP -> PlaneHL -> PlaneLL;
+
+    PlaneLL -> Other0HL;
+    PlaneLL -> FcsHL;
+    PlaneLL -> Other1HL;
+
+    FcsHL -> FcsLL;
+
+
 }
